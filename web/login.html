@@ -50,20 +50,26 @@ and open the template in the editor.
             </div>
             <div class="row">
                 <div class="col-md-4 col-md-offset-4">
-                    <div class="col-md-12" style="border: 1px solid #e1e1e1; border-radius:2px;padding-top:20px;padding-bottom:20px;">
-                        <form action="Servlet" method="get">
-                            <div class="form-group">
-                                <label for="emailInput">Email</label>
-                                <input type="email" class="form-control" id="emailInput" placeholder="Email">
-                            </div>
-                            <div class="form-group">
-                                <label for="passwordInput">Password</label>
-                                <input type="password" class="form-control" id="passwordInput" placeholder="Password">
-                            </div>
-                            <button type="submit" class="btn btn-success col-md-5">Create user</button>
-                            <button type="submit" class="btn btn-primary col-md-5 col-md-offset-2">Submit</button>
-                        </form>
+                    <div class="panel panel-default">
+                        <div class="panel-heading">Login</div>
 
+                        <div class="panel-body">
+                            <div class="col-md-12">
+                                <form action="Servlet" method="get">
+                                    <div class="form-group">
+                                        <label for="emailInput">Email</label>
+                                        <input type="email" class="form-control" id="emailInput" placeholder="Email">
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="passwordInput">Password</label>
+                                        <input type="password" class="form-control" id="passwordInput" placeholder="Password">
+                                    </div>
+                                    <button type="submit" class="btn btn-success col-md-5">Create user</button>
+                                    <button type="submit" class="btn btn-primary col-md-5 col-md-offset-2">Submit</button>
+                                </form>
+
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
