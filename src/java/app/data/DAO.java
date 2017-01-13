@@ -42,7 +42,6 @@ public class DAO implements DataAccessObject
             String query = "INSERT INTO user (name,password, email) VALUES (" + name + "," + password + "," + email + ");";
             Statement stmt = new Connector().getConnection().createStatement();
             stmt.executeUpdate(query);
-            //User users = new User(id, username, email);
         } catch (Exception ex)
         {
             ex.printStackTrace();
