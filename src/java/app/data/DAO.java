@@ -47,4 +47,16 @@ public class DAO implements DataAccessObject
             ex.printStackTrace();
         }
     }
+
+    @Override
+    public void newMessage(String msg, int roomId) {
+        try {
+            String query = "INSERT INTO logs " + "VALUES ('" + msg + ", " + roomId + "')";
+            Statement stmt = new Connector().getConnection().createStatement();
+            ResultSet res = stmt.executeQuery(query);
+
+        } catch (Exception ex) {
+            ex.printStackTrace();
+        }
+    }
 }
