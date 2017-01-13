@@ -5,15 +5,6 @@ import java.sql.Statement;
 
 import app.user.User;
 
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
-/**
- *
- * @author danny
- */
 public class DAO implements DataAccessObject {
 
     @Override
@@ -36,6 +27,17 @@ public class DAO implements DataAccessObject {
             return null;
         }
 
+    }
+
+    @Override
+    public void createUser(String name, String password, String email) {
+        try {
+            String query = "INSERT INTO user (name,password, email) VALUES (" + name + "," + password + "," + email + ");";
+            Statement stmt = new Connector().getConnection().createStatement();
+            stmt.executeUpdate(query);
+        } catch (Exception ex) {
+            ex.printStackTrace();
+        }
     }
 
     @Override
