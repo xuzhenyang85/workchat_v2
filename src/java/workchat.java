@@ -36,13 +36,17 @@ public class workchat extends HttpServlet {
             out.println("<!DOCTYPE html>");
             out.println("<html>");
             out.println("<head>");
-            out.println("<title>Servlet workchat</title>");            
+            out.println("<title>Servlet workchat</title>");
             out.println("</head>");
             out.println("<body>");
             out.println("<h1>Servlet workchat at " + request.getContextPath() + "</h1>");
             out.println("</body>");
             out.println("</html>");
         }
+    }
+
+    private void errorMessage(HttpServletRequest request, HttpServletResponse response) throws IOException {
+        response.sendRedirect("error.html");
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">

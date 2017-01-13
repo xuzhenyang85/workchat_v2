@@ -7,7 +7,6 @@ import app.user.User;
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
 /**
  *
  * @author danny
@@ -15,5 +14,7 @@ import app.user.User;
 public interface DataAccessObject {
 
     public User getUser(String name);
+
+    public void newMessage(String msg, int roomId);
 
 }
