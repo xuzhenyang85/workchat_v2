@@ -46,7 +46,6 @@ public class workchat extends HttpServlet {
         }
     }
     private void processLogin(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        response.setContentType("text/html;charset=UTF-8");
 
         request.getSession().setAttribute("email", request);
         request.getSession().setAttribute("password", request);
