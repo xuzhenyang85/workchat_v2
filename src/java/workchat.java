@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -12,10 +7,6 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-/**
- *
- * @author danny
- */
 @WebServlet(urlPatterns =
 {
     "/Servlet"
@@ -38,26 +29,26 @@ public class workchat extends HttpServlet
         int id;
         String name;
         String email;
-        
-        try{
-            id = Integer.parseInt(request.getParameter("id"));
-            System.out.println("User id: " + id);
-            
-            name = request.getParameter("name");
-            System.out.println("User name: " + name);
-            
-            email = request.getParameter("email");
-            System.out.println("User email: " + email);
-            
-        }
-        catch(NumberFormatException ex){
-            id = 0;
-            name = null;
-            email = null;
-        }
-        if(name.isEmpty() || email.isEmpty()){
-                response.sendRedirect("error.html");
-            }
+        System.out.println("du er ind");
+//        try{
+//            id = Integer.parseInt(request.getParameter("id"));
+//            System.out.println("User id: " + id);
+//            
+//            name = request.getParameter("name");
+//            System.out.println("User name: " + name);
+//            
+//            email = request.getParameter("email");
+//            System.out.println("User email: " + email);
+//            
+//        }
+//        catch(NumberFormatException ex){
+//            id = 0;
+//            name = null;
+//            email = null;
+//        }
+//        if(name.isEmpty() || email.isEmpty()){
+//                response.sendRedirect("error.html");
+//            }
         
         response.setContentType("text/html;charset=UTF-8");
         try (PrintWriter out = response.getWriter())
