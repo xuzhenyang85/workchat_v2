@@ -16,8 +16,8 @@ import javax.servlet.http.HttpServletResponse;
  *
  * @author danny
  */
-@WebServlet(urlPatterns = {"/Servlet"})
-public class workchat extends HttpServlet {
+@WebServlet(urlPatterns = {"/result"})
+public class Result extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>

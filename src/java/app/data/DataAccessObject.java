@@ -15,6 +15,6 @@ public interface DataAccessObject {
 
     public User getUser(String name);
 
-    public void newMessage(String msg, int roomId);
+    public void newMessage(String msg, int userId, int roomId);
 
 }

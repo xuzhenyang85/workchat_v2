@@ -39,9 +39,9 @@ public class DAO implements DataAccessObject {
     }
 
     @Override
-    public void newMessage(String msg, int roomId) {
+    public void newMessage(String msg, int userId, int roomId) {
         try {
-            String query = "INSERT INTO logs " + "VALUES ('" + msg + ", " + roomId + "')";
+            String query = "INSERT INTO logs " + "VALUES ('" + msg + "," + userId + ", " + roomId + "')";
             Statement stmt = new Connector().getConnection().createStatement();
             ResultSet res = stmt.executeQuery(query);
 
