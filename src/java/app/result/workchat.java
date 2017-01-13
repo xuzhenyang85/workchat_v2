@@ -1,4 +1,5 @@
-
+package app.result;
+import app.data.DAO;
 import java.io.IOException;
 import java.io.PrintWriter;
 import javax.servlet.ServletException;
@@ -26,29 +27,33 @@ public class workchat extends HttpServlet
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException
     {
-        int id;
+        String password;
         String name;
         String email;
-        System.out.println("du er ind");
-//        try{
-//            id = Integer.parseInt(request.getParameter("id"));
-//            System.out.println("User id: " + id);
-//            
-//            name = request.getParameter("name");
-//            System.out.println("User name: " + name);
-//            
-//            email = request.getParameter("email");
-//            System.out.println("User email: " + email);
-//            
-//        }
-//        catch(NumberFormatException ex){
-//            id = 0;
-//            name = null;
-//            email = null;
-//        }
-//        if(name.isEmpty() || email.isEmpty()){
-//                response.sendRedirect("error.html");
-//            }
+        
+        DAO dao = new DAO();
+        
+        try{
+            password = request.getParameter("password");
+            System.out.println("User password: " + password);
+            
+            name = request.getParameter("name");
+            System.out.println("User name: " + name);
+            
+            email = request.getParameter("email");
+            System.out.println("User email: " + email);
+            
+            dao.createUser(name, password, email);
+            
+        }
+        catch(NumberFormatException ex){
+            password = null;
+            name = null;
+            email = null;
+        }
+        if(name.isEmpty() || email.isEmpty()){
+                response.sendRedirect("error.html");
+            }
         
         response.setContentType("text/html;charset=UTF-8");
         try (PrintWriter out = response.getWriter())
@@ -61,6 +66,7 @@ public class workchat extends HttpServlet
             out.println("</head>");
             out.println("<body>");
             out.println("<h1>Servlet workchat at " + request.getContextPath() + "</h1>");
+            out.println("<p>Du er kommet ind</p>");
             out.println("</body>");
             out.println("</html>");
         }

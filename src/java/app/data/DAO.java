@@ -4,6 +4,7 @@ import java.sql.ResultSet;
 import java.sql.Statement;
 
 import app.user.User;
+import java.sql.PreparedStatement;
 
 public class DAO implements DataAccessObject
 {
@@ -37,9 +38,10 @@ public class DAO implements DataAccessObject
     @Override
     public void createUser(String name, String password, String email)
     {
+
         try
         {
-            String query = "INSERT INTO user (name,password, email) VALUES (" + name + "," + password + "," + email + ");";
+            String query = "INSERT INTO user (name,password, email) VALUES ('"+name+"','"+password+"','"+email+"');";
             Statement stmt = new Connector().getConnection().createStatement();
             stmt.executeUpdate(query);
         } catch (Exception ex)
@@ -49,13 +51,16 @@ public class DAO implements DataAccessObject
     }
 
     @Override
-    public void newMessage(String msg, int roomId) {
-        try {
+    public void newMessage(String msg, int roomId)
+    {
+        try
+        {
             String query = "INSERT INTO logs " + "VALUES ('" + msg + ", " + roomId + "')";
             Statement stmt = new Connector().getConnection().createStatement();
             ResultSet res = stmt.executeQuery(query);
 
-        } catch (Exception ex) {
+        } catch (Exception ex)
+        {
             ex.printStackTrace();
         }
     }
