@@ -2,20 +2,12 @@ package app.data;
 
 import app.user.User;
 
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
-
-/**
- *
- * @author danny
- */
 public interface DataAccessObject {
 
     public User getUser(String name);
-    
-    public void login(String email, String password);
+
+    public void createUser(String name, String password, String email);
+
+    public void newMessage(String msg, int userId, int roomId);
 
 }

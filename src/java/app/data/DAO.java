@@ -4,22 +4,14 @@ import java.sql.ResultSet;
 import java.sql.Statement;
 
 import app.user.User;
+import java.sql.PreparedStatement;
 
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
-/**
- *
- * @author danny
- */
 public class DAO implements DataAccessObject {
 
     @Override
     public User getUser(String name) {
         try {
-            String query = "SELECT * FROM workchat.user WHERE name = " + name + ";";
+            String query = "SELECT * FROM user WHERE name = " + name + ";";
             Statement stmt = new Connector().getConnection().createStatement();
             ResultSet res = stmt.executeQuery(query);
             if (res.next()) {
@@ -32,26 +24,35 @@ public class DAO implements DataAccessObject {
             }
             return null;
         } catch (Exception ex) {
+            ex.printStackTrace();
             return null;
         }
 
     }
 
     @Override
-    public void login(String email, String password) {
+    public void createUser(String name, String password, String email) {
+
         try {
-            String query = "SELECT * FROM workchat.user WHERE email = " + email + " AND password = " + password + ";";
+            String query = "INSERT INTO user (name,password, email) VALUES ('" + name + "','" + password + "','" + email + "');";
+            Statement stmt = new Connector().getConnection().createStatement();
+            stmt.executeUpdate(query);
+
+        } catch (Exception ex) {
+            ex.printStackTrace();
+        }
+    }
+
+    @Override
+    public void newMessage(String msg, int userId, int roomId) {
+        try {
+            String query = "INSERT INTO logs " + "VALUES ('" + msg + ", " + roomId + "')";
             Statement stmt = new Connector().getConnection().createStatement();
             ResultSet res = stmt.executeQuery(query);
 
-            if (res.next()) {
-//                String email = res.getString(email);
-//                String password = res.getString(password);
-            }
-
         } catch (Exception ex) {
+            ex.printStackTrace();
         }
-
     }
 
 }
