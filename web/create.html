@@ -48,6 +48,7 @@ and open the template in the editor.
                     </div><!-- /.container-fluid -->
                 </nav>
             </div>
+            
             <div class="row">
                 <div class="col-md-4 col-md-offset-4">
                     <div class="panel panel-default">
@@ -55,21 +56,20 @@ and open the template in the editor.
 
                         <div class="panel-body">
                             <div class="col-md-12">
-                                <form action="Servlet" method="get">
+                                <form action="Servlet" method="GET">
                                     <div class="form-group">
                                         <label for="emailInput">Name</label>
-                                        <input type="text" class="form-control" id="nameInput" placeholder="Email">
+                                        <input type="text" class="form-control" id="nameInput" name="name" placeholder="Name">
                                     </div>
                                     <div class="form-group">
                                         <label for="emailInput">Email</label>
-                                        <input type="email" class="form-control" id="emailInput" placeholder="Email">
+                                        <input type="email" class="form-control" id="emailInput" name="email" placeholder="Email">
                                     </div>
                                     <div class="form-group">
                                         <label for="passwordInput">Password</label>
-                                        <input type="password" class="form-control" id="passwordInput" placeholder="Password">
+                                        <input type="password" class="form-control" id="passwordInput" name="password" placeholder="Password">
                                     </div>
-                                    <button type="submit" class="btn btn-success col-md-5">Create user</button>
-                                    <button type="submit" class="btn btn-primary col-md-5 col-md-offset-2">Submit</button>
+                                    <button type="submit" name="create" class="btn btn-success col-md-5">Create user</button>
                                 </form>
 
                             </div>

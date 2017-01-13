@@ -5,24 +5,19 @@ import java.sql.Statement;
 
 import app.user.User;
 
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
-/**
- *
- * @author danny
- */
-public class DAO implements DataAccessObject {
+public class DAO implements DataAccessObject
+{
 
     @Override
-    public User getUser(String name) {
-        try {
+    public User getUser(String name)
+    {
+        try
+        {
             String query = "SELECT * FROM workchat.user WHERE name = " + name + ";";
             Statement stmt = new Connector().getConnection().createStatement();
             ResultSet res = stmt.executeQuery(query);
-            if (res.next()) {
+            if (res.next())
+            {
                 int id = res.getInt("id");
                 String username = res.getString("name");
                 String email = res.getString("email");
@@ -31,11 +26,26 @@ public class DAO implements DataAccessObject {
                 return users;
             }
             return null;
-        } catch (Exception ex) {
+        } catch (Exception ex)
+        {
             ex.printStackTrace();
             return null;
         }
 
     }
 
+    @Override
+    public void createUser(String name, String password, String email)
+    {
+        try
+        {
+            String query = "INSERT INTO user (name,password, email) VALUES (" + name + "," + password + "," + email + ");";
+            Statement stmt = new Connector().getConnection().createStatement();
+            stmt.executeUpdate(query);
+            //User users = new User(id, username, email);
+        } catch (Exception ex)
+        {
+            ex.printStackTrace();
+        }
+    }
 }
