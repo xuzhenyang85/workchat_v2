@@ -10,7 +10,7 @@ public class DAO implements DataAccessObject {
     @Override
     public User getUser(String name) {
         try {
-            String query = "SELECT * FROM workchat.user WHERE name = " + name + ";";
+            String query = "SELECT * FROM user WHERE name = " + name + ";";
             Statement stmt = new Connector().getConnection().createStatement();
             ResultSet res = stmt.executeQuery(query);
             if (res.next()) {
@@ -32,9 +32,10 @@ public class DAO implements DataAccessObject {
     @Override
     public void createUser(String name, String password, String email) {
         try {
-            String query = "INSERT INTO user (name,password, email) VALUES (" + name + "," + password + "," + email + ");";
             Statement stmt = new Connector().getConnection().createStatement();
+            String query = "INSERT INTO user (name, password, email) VALUES ('" + name + "','" + password + "','" + email + "');";
             stmt.executeUpdate(query);
+
         } catch (Exception ex) {
             ex.printStackTrace();
         }
