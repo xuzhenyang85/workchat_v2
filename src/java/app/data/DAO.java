@@ -9,16 +9,16 @@ import java.sql.PreparedStatement;
 public class DAO implements DataAccessObject {
 
     @Override
-    public User getUser(String name) {
+    public User getUser(String email) {
         try {
-            String query = "SELECT * FROM user WHERE name = " + name + ";";
+            String query = "SELECT * FROM user WHERE email = " + email + ";";
             Statement stmt = new Connector().getConnection().createStatement();
             ResultSet res = stmt.executeQuery(query);
             if (res.next()) {
                 int id = res.getInt("id");
                 String username = res.getString("name");
-                String email = res.getString("email");
-                User users = new User(id, username, email);
+                String userEmail = res.getString("email");
+                User users = new User(id, username, userEmail);
 
                 return users;
             }
@@ -52,6 +52,20 @@ public class DAO implements DataAccessObject {
 
         } catch (Exception ex) {
             ex.printStackTrace();
+        }
+    }
+    
+    public void userLogin(String email, String password) {
+        try {
+            String query = "SELECT * FROM user WHERE email = " + email + " AND password = " + password + ";";
+            
+            Statement stmt = new Connector().getConnection().createStatement();
+            ResultSet res = stmt.executeQuery(query);
+            
+            
+            
+        } catch (Exception ex) {
+            
         }
     }
 
