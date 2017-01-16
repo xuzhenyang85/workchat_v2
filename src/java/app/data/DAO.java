@@ -47,28 +47,27 @@ public class DAO implements DataAccessObject {
             String query = "INSERT INTO logs " + "VALUES ('" + msg + ", " + roomId + "')";
             Statement stmt = new Connector().getConnection().createStatement();
             ResultSet res = stmt.executeQuery(query);
-            
 
         } catch (Exception ex) {
         }
     }
-    
-    public void userLogin(String email, String password) {
+
+    public boolean checkLogin(String email, String password) {
         try {
             String query = "SELECT * FROM user WHERE email = '" + email + "' AND password = '" + password + "';";
-            
+
             Statement stmt = new Connector().getConnection().createStatement();
             ResultSet res = stmt.executeQuery(query);
-            
-            if(res.next()){
-                String Useremail = res.getString("email");
-                String Userpassword = res.getString("password");
-                System.out.println("Usermail: " + Useremail);
-                System.out.println("Userpassword:" + Userpassword);
-               }
-            
+
+            if (res.next()) {
+                return true;
+            } else {
+                return false;
+            }
+
         } catch (Exception ex) {
-            
+
         }
+        return false;
     }
 }

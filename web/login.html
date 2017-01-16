@@ -58,14 +58,14 @@ v.001
 
                         <div class="panel-body">
                             <div class="col-md-12">
-                                <form action="Servlet" method="POST">
+                                <form action="loginServlet" method="GET">
                                     <div class="form-group">
                                         <label for="emailInput">Email</label>
-                                        <input type="email" class="form-control" id="emailInput" placeholder="Email">
+                                        <input type="email" class="form-control" name="email" id="emailInput" placeholder="Email">
                                     </div>
                                     <div class="form-group">
                                         <label for="passwordInput">Password</label>
-                                        <input type="password" class="form-control" id="passwordInput" placeholder="Password">
+                                        <input type="password" class="form-control"  name="password" id="passwordInput" placeholder="Password">
                                     </div>
                                     <a href="create.html" class="btn btn-success col-md-5">Create user</a>
                                     <button type="submit" class="btn btn-primary col-md-5 col-md-offset-2">Login</button>
