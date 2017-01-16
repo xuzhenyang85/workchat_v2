@@ -88,7 +88,7 @@ public class loginServlet extends HttpServlet {
 
             out.println("<div class='panel-body'>");
             out.println("<div class='col-md-12'>");
-            out.println("<form action='Servlet' method='get'>");
+            out.println("<form action='Servlet' method='POST'>");
             out.println("<div class='form-group'>");
             out.println("<label for='emailInput'>Email</label>");
             out.println("<input type='email' class='form-control' id='emailInput' placeholder='Email'>");
@@ -97,8 +97,8 @@ public class loginServlet extends HttpServlet {
             out.println("<label for='passwordInput'>Password</label>");
             out.println("<input type='password' class='form-control' id='passwordInput' placeholder='Password'>");
             out.println("</div>");
-            out.println("<button type='submit' class='btn btn-success col-md-5'>Create user</button>");
-            out.println("<button type='submit' class='btn btn-primary col-md-5 col-md-offset-2'>Submit</button>");
+            out.println("<button type='submit' class='btn btn-success col-md-5'>New user? Click here!</button>");
+            out.println("<button tyoe='submit' class='btn btn-primary col-md-5 col-md-offset-2'>Submit</button>");
             out.println("</form>");
 
             out.println("</div>");

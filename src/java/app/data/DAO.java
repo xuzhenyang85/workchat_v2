@@ -39,7 +39,6 @@ public class DAO implements DataAccessObject {
             stmt.executeUpdate(query);
 
         } catch (Exception ex) {
-            ex.printStackTrace();
         }
     }
 
@@ -52,13 +51,12 @@ public class DAO implements DataAccessObject {
             
 
         } catch (Exception ex) {
-            ex.printStackTrace();
         }
     }
     
     public void userLogin(String email, String password) {
         try {
-            String query = "SELECT * FROM user WHERE email = " + email + " AND password = " + password + ";";
+            String query = "SELECT * FROM user WHERE email = '" + email + "' AND password = '" + password + "';";
             
             Statement stmt = new Connector().getConnection().createStatement();
             ResultSet res = stmt.executeQuery(query);
@@ -66,7 +64,6 @@ public class DAO implements DataAccessObject {
             if(res.next()){
                 String Useremail = res.getString("email");
                 String Userpassword = res.getString("password");
-               
                }
             
         } catch (Exception ex) {
