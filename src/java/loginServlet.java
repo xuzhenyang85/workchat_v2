@@ -108,10 +108,10 @@ public class loginServlet extends HttpServlet {
             out.println("</body>");
             out.println("</html>");
         }
-//        private void processLogin(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-//
-//        request.getSession().setAttribute("email", request);
-//        request.getSession().setAttribute("password", request);
+        public void processLogin(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+
+        request.getSession().setAttribute("email", request);
+        request.getSession().setAttribute("password", request);
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">

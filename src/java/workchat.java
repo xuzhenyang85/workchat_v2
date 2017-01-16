@@ -4,7 +4,6 @@
  * and open the template in the editor.
  */
 
-import static com.sun.corba.se.spi.presentation.rmi.StubAdapter.request;
 import java.io.IOException;
 import java.io.PrintWriter;
 import javax.servlet.ServletException;
@@ -45,14 +44,8 @@ public class workchat extends HttpServlet {
             out.println("</html>");
         }
     }
-    }
 
 
-    
-    
-    
-    
-    
 
 // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
 /**
