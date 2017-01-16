@@ -8,6 +8,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 @WebServlet(urlPatterns
         = {
@@ -34,16 +35,17 @@ public class workchat extends HttpServlet {
 
         try {
             password = request.getParameter("password");
-            System.out.println("User password: " + password);
+            //System.out.println("User password: " + password);
 
             name = request.getParameter("name");
-            System.out.println("User name: " + name);
+            // System.out.println("User name: " + name);
 
             email = request.getParameter("email");
-            System.out.println("User email: " + email);
+            // System.out.println("User email: " + email);
 
             dao.createUser(name, password, email);
-
+            HttpSession session = request.getSession(true);
+            session.setAttribute("email", email);
         } catch (NumberFormatException ex) {
             password = null;
             name = null;
@@ -56,16 +58,8 @@ public class workchat extends HttpServlet {
         response.setContentType("text/html;charset=UTF-8");
         try (PrintWriter out = response.getWriter()) {
             /* TODO output your page here. You may use following sample code. */
-            out.println("<!DOCTYPE html>");
-            out.println("<html>");
-            out.println("<head>");
-            out.println("<title>Servlet workchat</title>");
-            out.println("</head>");
-            out.println("<body>");
-            out.println("<h1>Servlet workchat at " + request.getContextPath() + "</h1>");
-            out.println("<p>Du er kommet ind</p>");
-            out.println("</body>");
-            out.println("</html>");
+
+            response.sendRedirect("dashboard");
         }
     }
 
