@@ -1,3 +1,5 @@
+package app.result;
+
 /*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
@@ -108,6 +110,7 @@ public class loginServlet extends HttpServlet {
             out.println("</body>");
             out.println("</html>");
         }
+    }
         public void processLogin(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
         request.getSession().setAttribute("email", request);

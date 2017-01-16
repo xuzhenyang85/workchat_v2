@@ -49,6 +49,7 @@ public class DAO implements DataAccessObject {
             String query = "INSERT INTO logs " + "VALUES ('" + msg + ", " + roomId + "')";
             Statement stmt = new Connector().getConnection().createStatement();
             ResultSet res = stmt.executeQuery(query);
+            
 
         } catch (Exception ex) {
             ex.printStackTrace();
@@ -62,11 +63,14 @@ public class DAO implements DataAccessObject {
             Statement stmt = new Connector().getConnection().createStatement();
             ResultSet res = stmt.executeQuery(query);
             
-            
+            if(res.next()){
+                String Useremail = res.getString("email");
+                String Userpassword = res.getString("password");
+               
+               }
             
         } catch (Exception ex) {
             
         }
     }
-
 }
