@@ -70,4 +70,12 @@ public class DAO implements DataAccessObject {
         }
         return false;
     }
+    public void checkAllRooms(int fk_userId, int fk_groupId) {
+        try {
+            String query = "SELECT * FROM rooms WHERE fk_groupId = '" + fk_userId + "' AND fk_userId = '" + fk_groupId + "';";
+            
+        } catch (Exception ex) {
+            
+        }
+    }
 }
