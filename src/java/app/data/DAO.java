@@ -39,7 +39,6 @@ public class DAO implements DataAccessObject {
             stmt.executeUpdate(query);
 
         } catch (Exception ex) {
-            ex.printStackTrace();
         }
     }
 
@@ -52,7 +51,6 @@ public class DAO implements DataAccessObject {
             
 
         } catch (Exception ex) {
-            ex.printStackTrace();
         }
     }
     

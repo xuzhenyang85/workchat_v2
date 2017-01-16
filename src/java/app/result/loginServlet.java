@@ -97,8 +97,8 @@ public class loginServlet extends HttpServlet {
             out.println("<label for='passwordInput'>Password</label>");
             out.println("<input type='password' class='form-control' id='passwordInput' placeholder='Password'>");
             out.println("</div>");
-            out.println("<button type='submit' class='btn btn-success col-md-5'>Create user</button>");
-            out.println("<button type='submit' class='btn btn-primary col-md-5 col-md-offset-2'>Submit</button>");
+            out.println("<button type='submit' class='btn btn-success col-md-5'>New user? Click here!</button>");
+            out.println("<button a href ='create html' class='btn btn-primary col-md-5 col-md-offset-2'>Submit</button>");
             out.println("</form>");
 
             out.println("</div>");
