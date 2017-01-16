@@ -2,9 +2,7 @@ package app.data;
 
 import java.sql.ResultSet;
 import java.sql.Statement;
-
 import app.user.User;
-import java.sql.PreparedStatement;
 
 public class DAO implements DataAccessObject {
 

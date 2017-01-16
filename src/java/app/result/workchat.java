@@ -1,4 +1,5 @@
 package app.result;
+
 import app.data.DAO;
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -30,31 +31,36 @@ public class workchat extends HttpServlet
         String password;
         String name;
         String email;
-        
+
         DAO dao = new DAO();
-        
-        try{
+
+        try
+        {
             password = request.getParameter("password");
             System.out.println("User password: " + password);
-            
+
             name = request.getParameter("name");
             System.out.println("User name: " + name);
-            
+
             email = request.getParameter("email");
             System.out.println("User email: " + email);
-            
+
             dao.createUser(name, password, email);
-            
-        }
-        catch(NumberFormatException ex){
+
+        } catch (NumberFormatException ex)
+        {
             password = null;
             name = null;
             email = null;
         }
-        if(name.isEmpty() || email.isEmpty()){
-                response.sendRedirect("error.html");
-            }
-        
+        if (name.isEmpty() || email.isEmpty())
+        {
+            response.sendRedirect("error.html");
+        } else
+        {
+            response.sendRedirect("dashboard.html");
+        }
+
         response.setContentType("text/html;charset=UTF-8");
         try (PrintWriter out = response.getWriter())
         {
@@ -72,7 +78,8 @@ public class workchat extends HttpServlet
         }
     }
 
-    private void errorMessage(HttpServletRequest request, HttpServletResponse response) throws IOException {
+    private void errorMessage(HttpServletRequest request, HttpServletResponse response) throws IOException
+    {
         response.sendRedirect("error.html");
     }
 
