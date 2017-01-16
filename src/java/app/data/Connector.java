@@ -13,6 +13,7 @@ import java.sql.DriverManager;
  * @author danny
  */
 public class Connector {
+
     private Connection connection = null;
 
     //Constants
