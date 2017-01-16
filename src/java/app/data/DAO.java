@@ -1,9 +1,11 @@
 package app.data;
 
+import app.user.Group;
 import java.sql.ResultSet;
 import java.sql.Statement;
 
 import app.user.User;
+import java.util.ArrayList;
 
 public class DAO implements DataAccessObject {
 
@@ -69,5 +71,50 @@ public class DAO implements DataAccessObject {
 
         }
         return false;
+    }
+
+    public void createGroup(String name, String password, String email) {
+
+        try {
+            Statement stmt = new Connector().getConnection().createStatement();
+            String query = "INSERT INTO group (name,password, email) VALUES ('" + name + "','" + password + "','" + email + "');";
+            stmt.executeUpdate(query);
+
+        } catch (Exception ex) {
+        }
+    }
+
+    public ArrayList<Group> getAllGroups() {
+        ArrayList<Group> groups = new ArrayList<>();
+
+        try {
+            String query = "SELECT * FROM group";
+
+            Statement stmt = new Connector().getConnection().createStatement();
+            ResultSet res = stmt.executeQuery(query);
+
+            while (res.next()) {
+                String name = res.getString("name");
+                Group group = new Group(name);
+                groups.add(group);
+            }
+            return groups;
+        } catch (Exception ex) {
+            ex.printStackTrace();
+            return null;
+        }
+
+    }
+
+    public void sendInvitation() {
+
+    }
+
+    public void seeInvitation() {
+
+    }
+
+    public void acceptInvitation() {
+
     }
 }

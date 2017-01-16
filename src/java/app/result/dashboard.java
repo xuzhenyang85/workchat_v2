@@ -37,8 +37,6 @@ public class dashboard extends HttpServlet {
             /* TODO output your page here. You may use following sample code. */
             String email = (String) request.getSession().getAttribute("email");
 
-            String myUrl = request.getContextPath();
-            System.out.println(myUrl);
             if (email == null) {
                 response.sendRedirect("error.html");
             } else {
@@ -115,9 +113,9 @@ public class dashboard extends HttpServlet {
                 out.println("   <div>");
                 out.println(" <!-- Nav tabs -->");
                 out.println("    <ul class='nav nav-tabs' role='tablist'>");
-                out.println("    <li role='presentation' class='active'><a href='#home' aria-controls='home' role='tab' data-toggle='tab'>All rooms</a></li>");
-                out.println("    <li role='presentation'><a href='#profile' aria-controls='profile' role='tab' data-toggle='tab'>My rooms</a></li>");
-                out.println("    <li role='presentation'><a href='#messages' aria-controls='messages' role='tab' data-toggle='tab'>Create room</a></li>");
+                out.println("    <li role='presentation' class='active'><a href='#home' aria-controls='home' role='tab' data-toggle='tab'>All groups</a></li>");
+                out.println("    <li role='presentation'><a href='#profile' aria-controls='profile' role='tab' data-toggle='tab'>My groups</a></li>");
+                out.println("    <li role='presentation'><a href='#messages' aria-controls='messages' role='tab' data-toggle='tab'>Create group</a></li>");
                 out.println("</ul>");
 
                 out.println(" <!-- Tab panes -->");
@@ -163,7 +161,21 @@ public class dashboard extends HttpServlet {
                 out.println("       <h4 class='list-group-item-heading'>List group item heading</h4>");
                 out.println("       <p class='list-group-item-text'>...</p>");
                 out.println("    </a></div>");
-                out.println(" <div role='tabpanel' class='tab-pane' id='messages'>Create room</div>");
+                out.println(" <div role='tabpanel' class='tab-pane' id='messages'>"
+                        + ""
+                        + "<div class=\"col-md-12\" style=\"margin-top:20px;\">\n"
+                        + "                                    <form action=\"create\" method=\"GET\">\n"
+                        + "                                        <div class=\"form-group\">\n"
+                        + "                                            <label for=\"nameInput\">Group name</label>\n"
+                        + "                                            <input type=\"text\" class=\"form-control\" id=\"nameInput\" name=\"name\" placeholder=\"Group name\">\n"
+                        + "                                        </div>\n"
+                        + "                                        <div class=\"form-group\">\n"
+                        + "                                            <label for=\"passwordInput\">Password</label>\n"
+                        + "                                            <input type=\"password\" class=\"form-control\" id=\"passwordInput\" name=\"password\" placeholder=\"Password\">\n"
+                        + "                                        </div>\n"
+                        + "                                        <button type=\"submit\" class=\"btn btn-success col-md-5\">Create group</button>\n"
+                        + "                                    </form>\n"
+                        + "                                </div></div>");
                 out.println(" </div>");
                 out.println("  </div>");
                 out.println(" </div>");
