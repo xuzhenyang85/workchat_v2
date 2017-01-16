@@ -12,6 +12,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 /**
  *
@@ -36,9 +37,12 @@ public class dashboard extends HttpServlet {
             /* TODO output your page here. You may use following sample code. */
             String email = (String) request.getSession().getAttribute("email");
 
-            if (email.isEmpty()) {
+            String myUrl = request.getContextPath();
+            System.out.println(myUrl);
+            if (email == null) {
                 response.sendRedirect("error.html");
             } else {
+
                 out.println("<!DOCTYPE html>");
                 out.println("<head>");
                 out.println("<title>TODO supply a title</title>");
@@ -46,7 +50,7 @@ public class dashboard extends HttpServlet {
                 out.println("<meta name='viewport' content='width=device-width, initial-scale=1.0'>");
                 out.println("<link rel='stylesheet' type='text/css' href='css/reset.css'>");
                 out.println("<link rel='stylesheet' type='text/css' href='css/bootstrap-theme.css'>");
-                out.println("<link rel='stylesheet' type='text/css' href='css/bootstrap.css'>    ");
+                out.println("<link rel='stylesheet' type='text/css' href='css/bootstrap.css'>");
                 out.println("<script src='https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js'></script>");
                 out.println("<script src='js/bootstrap.js'></script> ");
 
@@ -71,7 +75,7 @@ public class dashboard extends HttpServlet {
                 out.println("</head>");
                 out.println("<body>");
 
-                out.println(" <div class='container-fluid'>dette er servlet<div class='row'>");
+                out.println(" <div class='container-fluid'><div class='row'>");
                 out.println(" <nav class='navbar navbar-default'>");
                 out.println("  <div class='container-fluid'>");
                 out.println("  <div class='navbar-header'>");
@@ -81,12 +85,15 @@ public class dashboard extends HttpServlet {
                 out.println(" <span class='icon-bar'></span>");
                 out.println(" <span class='icon-bar'></span>");
                 out.println(" </button>");
-                out.println("   <a class='navbar-brand' href='#'>WORKGROUP</a>");
+                out.println("   <a class='navbar-brand' href='#'>WORKGROUP - " + email + "</a>");
                 out.println("   </div>");
 
                 out.println("  <div class='collapse navbar-collapse' id='bs-example-navbar-collapse-'>");
                 out.println("<ul class='nav navbar-nav navbar-right'>");
-                out.println("  <li><a href='#'>Link</a></li>");
+                out.println("<form action='logout' method='POST'>");
+                out.println("  <li><button type='submit'>Log out</button></li>");
+                out.println("</form>");
+
                 out.println("  <li class='dropdown'>");
                 out.println("  <a href='#' class='dropdown-toggle' data-toggle='dropdown' role='button' aria-haspopup='true' aria-expanded='false'>Dropdown <span class='caret'></span></a>");
                 out.println("  <ul class='dropdown-menu'>");
