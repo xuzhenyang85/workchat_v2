@@ -4,7 +4,6 @@ import java.sql.ResultSet;
 import java.sql.Statement;
 
 import app.user.User;
-import java.sql.PreparedStatement;
 
 public class DAO implements DataAccessObject {
 
@@ -64,6 +63,8 @@ public class DAO implements DataAccessObject {
             if(res.next()){
                 String Useremail = res.getString("email");
                 String Userpassword = res.getString("password");
+                System.out.println("Usermail: " + Useremail);
+                System.out.println("Userpassword:" + Userpassword);
                }
             
         } catch (Exception ex) {

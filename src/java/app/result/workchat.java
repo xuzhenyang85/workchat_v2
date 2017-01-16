@@ -42,10 +42,11 @@ public class workchat extends HttpServlet {
 
             email = request.getParameter("email");
             // System.out.println("User email: " + email);
-
+            
             dao.createUser(name, password, email);
             HttpSession session = request.getSession(true);
             session.setAttribute("email", email);
+        
         } catch (NumberFormatException ex) {
             password = null;
             name = null;

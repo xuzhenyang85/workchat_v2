@@ -6,6 +6,7 @@ package app.result;
  * and open the template in the editor.
  */
 
+import app.data.DAO;
 import java.io.IOException;
 import java.io.PrintWriter;
 import javax.servlet.ServletException;
@@ -30,6 +31,8 @@ public class loginServlet extends HttpServlet {
      * @throws ServletException if a servlet-specific error occurs
      * @throws IOException if an I/O error occurs
      */
+    
+     
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
@@ -88,7 +91,7 @@ public class loginServlet extends HttpServlet {
 
             out.println("<div class='panel-body'>");
             out.println("<div class='col-md-12'>");
-            out.println("<form action='Servlet' method='POST'>");
+            out.println("<form action='loginServlet'  method='POST'>");
             out.println("<div class='form-group'>");
             out.println("<label for='emailInput'>Email</label>");
             out.println("<input type='email' class='form-control' id='emailInput' placeholder='Email'>");
@@ -111,12 +114,32 @@ public class loginServlet extends HttpServlet {
             out.println("</html>");
         }
     }
-        public void processLogin(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-
-        request.getSession().setAttribute("email", request);
-        request.getSession().setAttribute("password", request);
-    }
-
+       
+     public void checkUser(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
+        
+        String password;
+        String email;
+        
+        try {
+            
+            password = request.getParameter("password");
+            email = request.getParameter("email");
+        
+        } catch (NumberFormatException ex) {
+            password = null;
+            email = null;
+        }
+        if (email.isEmpty() || password.isEmpty()) {
+            response.sendRedirect("loginServlet");
+        }
+        }
+//        public void processLogin(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+//
+//        request.getSession().setAttribute("email", request);
+//        request.getSession().setAttribute("password", request);
+//    }
+        
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
     /**
      * Handles the HTTP <code>GET</code> method.
@@ -129,6 +152,7 @@ public class loginServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+        
         processRequest(request, response);
     }
 
@@ -146,14 +170,8 @@ public class loginServlet extends HttpServlet {
         processRequest(request, response);
     }
 
-    /**
-     * Returns a short description of the servlet.
-     *
-     * @return a String containing servlet description
-     */
     @Override
     public String getServletInfo() {
         return "Short description";
-    }// </editor-fold>
-
+    }
 }
