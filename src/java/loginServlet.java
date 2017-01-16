@@ -37,7 +37,7 @@ public class loginServlet extends HttpServlet {
             out.println("<html>");
             out.println("<head>");
             out.println("<title>Servlet loginServlet</title>");
-            
+
             out.println("<meta charset='UTF - 8'>");
             out.println("<meta name='viewport' content='width = device - width, initial - scale = 1.0'>");
             out.println("<link rel='stylesheet' type='text/css' href='" + request.getContextPath() + "/css/reset.css'>");
@@ -108,7 +108,9 @@ public class loginServlet extends HttpServlet {
             out.println("</body>");
             out.println("</html>");
         }
-        public void processLogin(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+    }
+
+    public void processLogin(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
         request.getSession().setAttribute("email", request);
         request.getSession().setAttribute("password", request);
