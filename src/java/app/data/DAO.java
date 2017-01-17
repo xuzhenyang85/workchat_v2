@@ -126,6 +126,7 @@ public class DAO implements DataAccessObject
                 String name = res.getString("groupName");
                 Group group = new Group(id,name); 
                 groups.add(group);
+                System.out.println(groups);
             }
             return groups;
         } catch (Exception ex) {
@@ -147,9 +148,15 @@ public class DAO implements DataAccessObject
         
     }
 
-    public void checkAllGroups(String fk_userId, int fk_groupId) {
+    public void checkAllGroups() {
         try {
-            String query = "SELECT * FROM groups WHERE fk_userId = '" + fk_userId + "' AND fk_groupId = '" + fk_groupId + "';";
+            String query = "SELECT * FROM grouprooms";
+            
+            Statement stmt = new Connector().getConnection().createStatement();
+            ResultSet res = stmt.executeQuery(query);
+            ArrayList<Group> groups = new ArrayList<>();
+            
+            
             
         } catch (Exception ex) {
             

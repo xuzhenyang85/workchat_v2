@@ -6,8 +6,10 @@
 package app.result;
 
 import app.data.DAO;
+import app.user.Group;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.ArrayList;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -124,30 +126,48 @@ public class dashboard extends HttpServlet {
                 out.println("<div class='tab-content'>");
                 out.println("  <div role='tabpanel' class='tab-pane active' id='home'>");
                 out.println("   <div class='list-group'>");
-                out.println("      <a href='room.html' class='list-group-item'>");
-                out.println("         <h4 class='list-group-item-heading'>List group item heading</h4>");
-                out.println("          <p class='list-group-item-text'>...</p>");
-                out.println("     </a>");
-                out.println("     <a href='room.html' class='list-group-item'>");
-                out.println("     <h4 class='list-group-item-heading'>List group item heading</h4>");
-                out.println("       <p class='list-group-item-text'>...</p>");
-                out.println("    </a>");
-                out.println("    <a href='room.html' class='list-group-item'>");
-                out.println("       <h4 class='list-group-item-heading'>List group item heading</h4>");
-                out.println("        <p class='list-group-item-text'>...</p>");
-                out.println("   </a>");
-                out.println("    <a href='room.html' class='list-group-item'>");
-                out.println("      <h4 class='list-group-item-heading'>List group item heading</h4>");
-                out.println("       <p class='list-group-item-text'>...</p>");
-                out.println("  </a>");
-                out.println("   <a href='room.html' class='list-group-item'>");
-                out.println("      <h4 class='list-group-item-heading'>List group item heading</h4>");
-                out.println("      <p class='list-group-item-text'>...</p>");
-                out.println("   </a>");
-                out.println("    <a href='room.html' class='list-group-item'>");
-                out.println("        <h4 class='list-group-item-heading'>List group item heading</h4>");
-                out.println("        <p class='list-group-item-text'>...</p>");
-                out.println("      </a>");
+//                out.println("      <a href='room.html' class='list-group-item'>");
+//                out.println("         <h4 class='list-group-item-heading'>List group item heading</h4>");
+//                out.println("          <p class='list-group-item-text'>...</p>");
+//                out.println("     </a>");
+//                out.println("     <a href='room.html' class='list-group-item'>");
+//                out.println("     <h4 class='list-group-item-heading'>List group item heading</h4>");
+//                out.println("       <p class='list-group-item-text'>...</p>");
+//                out.println("    </a>");
+//                out.println("    <a href='room.html' class='list-group-item'>");
+//                out.println("       <h4 class='list-group-item-heading'>List group item heading</h4>");
+//                out.println("        <p class='list-group-item-text'>...</p>");
+//                out.println("   </a>");
+//                out.println("    <a href='room.html' class='list-group-item'>");
+//                out.println("      <h4 class='list-group-item-heading'>List group item heading</h4>");
+//                out.println("       <p class='list-group-item-text'>...</p>");
+//                out.println("  </a>");
+//                    
+                
+//                out.println("    <a href='room.html' class='list-group-item'>");
+//                out.println("        <h4 class='list-group-item-heading'>List group item heading</h4>");
+//                out.println("        <p class='list-group-item-text'>...</p>");
+//                out.println("      </a>");
+                        
+                        DAO dao = new DAO();
+                        ArrayList<Group> groups = new ArrayList<>();
+                        groups = dao.getAllGroups();
+                        
+                        for (int i = 0; i < groups.size(); i++) {
+                        out.println("   <a href='room.html' class='list-group-item'>");
+                        out.println("       <h4 class='list-group-item-heading'>" + groups.get(i).getName() + "</h4>");
+                        out.println("       <p class='list-group-item-text'>...</p>");
+                        out.println("    </a>");
+                        
+                        
+                        if(dao.getAllGroups().isEmpty()){
+                            out.println("   <class='list-group-item'>");
+                            out.println("       <h4 class='list-group-item-heading'>There are no groups available - try again later</h4>");
+                            out.println("    </a>");
+                        }
+                        //out.println(groups.get(i).getName());
+                        }
+                        
                 out.println("   </div>");
                 out.println(" </div>");
                 out.println(" <div role='tabpanel' class='tab-pane' id='profile'>");
@@ -162,7 +182,10 @@ public class dashboard extends HttpServlet {
                 out.println("   <a href='room.html' class='list-group-item'>");
                 out.println("       <h4 class='list-group-item-heading'>List group item heading</h4>");
                 out.println("       <p class='list-group-item-text'>...</p>");
-                out.println("    </a></div>");
+                out.println("    </a>");
+                
+                    
+        out.println("</div>");
                 out.println(" <div role='tabpanel' class='tab-pane' id='messages'>"
                         + ""
                         + "<div class=\"col-md-12\" style=\"margin-top:20px;\">\n"
@@ -188,9 +211,19 @@ public class dashboard extends HttpServlet {
             }
         }
     }
-    
+
     public void allRooms() {
         DAO dao = new DAO();
+        ArrayList<Group> groups = new ArrayList<>();
+        groups = dao.getAllGroups();
+
+        for (int i = 0; i < groups.size(); i++) {
+            System.out.println("   <a href='room.html' class='list-group-item'>");
+            System.out.println("       <h4 class='list-group-item-heading'>" + groups.get(i).getName() + "");
+            System.out.println("       <p class='list-group-item-text'>...</p>");
+            System.out.println("    </a>");
+            //System.out.println(groups.get(i).getName());
+        }
     }
     
     public void myRooms(){
@@ -238,3 +271,5 @@ public class dashboard extends HttpServlet {
     }// </editor-fold>
 
 }
+
+
