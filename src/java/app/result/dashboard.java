@@ -5,6 +5,7 @@
  */
 package app.result;
 
+import app.data.DAO;
 import java.io.IOException;
 import java.io.PrintWriter;
 import javax.servlet.ServletException;
@@ -173,6 +174,12 @@ public class dashboard extends HttpServlet {
                 out.println("</html>");
             }
         }
+    }
+    
+    public void allRooms() {
+        DAO dao = new DAO();
+        
+        dao.checkAllGroups(0, 0);
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
