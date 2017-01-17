@@ -35,7 +35,7 @@ public class DAO implements DataAccessObject {
     public void createUser(String name, String password, String email) {
 
         try {
-            String query = "INSERT INTO user (name,password, email) VALUES ('" + name + "','" + password + "','" + email + "');";
+            String query = "INSERT INTO user (name, password, email) VALUES ('" + name + "','" + password + "','" + email + "');";
             Statement stmt = new Connector().getConnection().createStatement();
             stmt.executeUpdate(query);
 
@@ -46,11 +46,39 @@ public class DAO implements DataAccessObject {
     @Override
     public void newMessage(String msg, int userId, int roomId) {
         try {
-            String query = "INSERT INTO logs " + "VALUES ('" + msg + ", " + roomId + "')";
+            String query = "INSERT INTO logs " + "VALUES ('" + msg + "', '" + roomId + "')";
             Statement stmt = new Connector().getConnection().createStatement();
             ResultSet res = stmt.executeQuery(query);
 
         } catch (Exception ex) {
+        }
+    }
+
+    @Override
+    public void createGroup(String name, String password, String email) {
+        try {
+
+            String query = "INSERT INTO grouprooms (name, password, email) VALUES ('" + name + "','" + password + "','" + email + "');";
+            Statement stmt = new Connector().getConnection().createStatement();
+            stmt.executeUpdate(query);
+
+            query = "SELECT * FROM grouprooms WHERE name = '" + name + "' AND password = '" + password + "';";
+            Statement stmt1 = new Connector().getConnection().createStatement();
+            ResultSet res = stmt1.executeQuery(query);
+            
+            int id = 0;
+            if (res.next()) {
+                id = res.getInt("id");
+            }
+
+            query = "INSERT INTO groups (fk_userId, fk_groupId) VALUES ('" + email + "','" + id + "');";
+            Statement stmt2 = new Connector().getConnection().createStatement();
+            stmt2.executeUpdate(query);
+
+            System.out.println("finish");
+
+        } catch (Exception ex) {
+            System.out.println("hello");
         }
     }
 
@@ -71,17 +99,6 @@ public class DAO implements DataAccessObject {
 
         }
         return false;
-    }
-
-    public void createGroup(String name, String password, String email) {
-
-        try {
-            Statement stmt = new Connector().getConnection().createStatement();
-            String query = "INSERT INTO group (name,password, email) VALUES ('" + name + "','" + password + "','" + email + "');";
-            stmt.executeUpdate(query);
-
-        } catch (Exception ex) {
-        }
     }
 
     public ArrayList<Group> getAllGroups() {

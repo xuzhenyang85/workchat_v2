@@ -38,7 +38,7 @@ public class dashboard extends HttpServlet {
             String email = (String) request.getSession().getAttribute("email");
 
             if (email == null) {
-                response.sendRedirect("error.html");
+                response.sendRedirect("login.html");
             } else {
 
                 out.println("<!DOCTYPE html>");
@@ -171,7 +171,7 @@ public class dashboard extends HttpServlet {
                         + "                                        </div>\n"
                         + "                                        <div class=\"form-group\">\n"
                         + "                                            <label for=\"passwordInput\">Password</label>\n"
-                        + "                                            <input type=\"password\" class=\"form-control\" id=\"passwordInput\" name=\"password\" placeholder=\"Password\">\n"
+                        + "                                            <input type=\"text\" class=\"form-control\" id=\"passwordInput\" name=\"password\" placeholder=\"Password\">\n"
                         + "                                        </div>\n"
                         + "                                        <button type=\"submit\" class=\"btn btn-success col-md-5\">Create group</button>\n"
                         + "                                    </form>\n"
