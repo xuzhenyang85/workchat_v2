@@ -1,18 +1,24 @@
 package app.data;
 
+import app.user.Group;
 import java.sql.ResultSet;
 import java.sql.Statement;
 import app.user.User;
+import java.util.ArrayList;
 
-public class DAO implements DataAccessObject {
+public class DAO implements DataAccessObject
+{
 
     @Override
-    public User getUser(String email) {
-        try {
+    public User getUser(String email)
+    {
+        try
+        {
             String query = "SELECT * FROM user WHERE email = " + email + ";";
             Statement stmt = new Connector().getConnection().createStatement();
             ResultSet res = stmt.executeQuery(query);
-            if (res.next()) {
+            if (res.next())
+            {
                 int id = res.getInt("id");
                 String username = res.getString("name");
                 String userEmail = res.getString("email");
@@ -21,7 +27,8 @@ public class DAO implements DataAccessObject {
                 return users;
             }
             return null;
-        } catch (Exception ex) {
+        } catch (Exception ex)
+        {
             ex.printStackTrace();
             return null;
         }
@@ -29,44 +36,84 @@ public class DAO implements DataAccessObject {
     }
 
     @Override
-    public void createUser(String name, String password, String email) {
+    public void createUser(String name, String password, String email)
+    {
 
-        try {
+        try
+        {
             String query = "INSERT INTO user (name,password, email) VALUES ('" + name + "','" + password + "','" + email + "');";
             Statement stmt = new Connector().getConnection().createStatement();
             stmt.executeUpdate(query);
 
-        } catch (Exception ex) {
+        } catch (Exception ex)
+        {
         }
     }
 
     @Override
-    public void newMessage(String msg, int userId, int roomId) {
-        try {
+    public void newMessage(String msg, int userId, int roomId)
+    {
+        try
+        {
             String query = "INSERT INTO logs " + "VALUES ('" + msg + ", " + roomId + "')";
             Statement stmt = new Connector().getConnection().createStatement();
             ResultSet res = stmt.executeQuery(query);
 
-        } catch (Exception ex) {
+        } catch (Exception ex)
+        {
         }
     }
 
-    public boolean checkLogin(String email, String password) {
-        try {
+    public boolean checkLogin(String email, String password)
+    {
+        try
+        {
             String query = "SELECT * FROM user WHERE email = '" + email + "' AND password = '" + password + "';";
 
             Statement stmt = new Connector().getConnection().createStatement();
             ResultSet res = stmt.executeQuery(query);
 
-            if (res.next()) {
+            if (res.next())
+            {
                 return true;
-            } else {
+            } else
+            {
                 return false;
             }
 
-        } catch (Exception ex) {
+        } catch (Exception ex)
+        {
 
         }
         return false;
+    }
+
+    @Override
+    public ArrayList<Group> checkMyGroups(String email)
+    {
+        try
+        {
+            String query = "SELECT * FROM grouprooms INNER JOIN groups INNER JOIN user ON grouprooms.groupId = groups.fk_groupId AND user.id = groups.fk_userId WHERE user.email ='"+email+"'";
+            Statement stmt = new Connector().getConnection().createStatement();
+            ResultSet res = stmt.executeQuery(query);
+            ArrayList<Group> groups = new ArrayList<>();
+            while (res.next())
+            {
+                int id = res.getInt("groupId");
+                String groupName = res.getString("groupName");
+                String groupPassword = res.getString("groupPassword");
+                String groupEmail = res.getString("groupEmail");
+                int userId = res.getInt("fk_userId");
+                int groupId = res.getInt("fk_groupId");
+                groups.add(new Group(id, groupName, groupPassword, groupEmail, userId, groupId));
+
+            }
+            return groups;
+        } catch (Exception ex)
+        {
+            ex.printStackTrace();
+            return null;
+        }
+
     }
 }
