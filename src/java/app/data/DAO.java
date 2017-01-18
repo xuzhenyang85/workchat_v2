@@ -61,7 +61,7 @@ public class DAO implements DataAccessObject
     }
 
     @Override
-    public void createGroup(String name, String password, String email) {
+    public void createGroup(String name, String password, String email, String userone, String usertwo, String userthree) {
         try {
 
             String query = "INSERT INTO grouprooms (groupName, groupPassword, groupEmail) VALUES ('" + name + "','" + password + "','" + email + "');";
@@ -80,11 +80,20 @@ public class DAO implements DataAccessObject
             query = "INSERT INTO groups (fk_userId, fk_groupId) VALUES ('" + email + "','" + id + "');";
             Statement stmt2 = new Connector().getConnection().createStatement();
             stmt2.executeUpdate(query);
+            query = "INSERT INTO groups (fk_userId, fk_groupId) VALUES ('" + userone + "','" + id + "');";
+            Statement stmt3 = new Connector().getConnection().createStatement();
+            stmt3.executeUpdate(query);
+            query = "INSERT INTO groups (fk_userId, fk_groupId) VALUES ('" + usertwo + "','" + id + "');";
+            Statement stmt4 = new Connector().getConnection().createStatement();
+            stmt4.executeUpdate(query);
+            query = "INSERT INTO groups (fk_userId, fk_groupId) VALUES ('" + userthree + "','" + id + "');";
+            Statement stmt5 = new Connector().getConnection().createStatement();
+            stmt5.executeUpdate(query);
 
-            System.out.println("finish");
+            System.out.println("in");
 
         } catch (Exception ex) {
-            System.out.println("hello");
+            System.out.println("not in");
         }
     }
 
@@ -167,7 +176,7 @@ public class DAO implements DataAccessObject
     {
         try
         {
-            String query = "SELECT * FROM grouprooms INNER JOIN groups INNER JOIN user ON grouprooms.groupId = groups.fk_groupId AND user.id = groups.fk_userId WHERE user.email ='"+email+"';";
+            String query = "SELECT * FROM grouprooms INNER JOIN groups INNER JOIN user ON grouprooms.groupId = groups.fk_groupId AND user.email = groups.fk_userId WHERE user.email ='"+email+"';";
             Statement stmt = new Connector().getConnection().createStatement();
             ResultSet res = stmt.executeQuery(query);
             ArrayList<Group> groups = new ArrayList<>();
@@ -175,11 +184,6 @@ public class DAO implements DataAccessObject
             {
                 int id = res.getInt("groupId");
                 String name = res.getString("groupName");
-//                String groupPassword = res.getString("groupPassword");
-//                String groupEmail = res.getString("groupEmail");
-//                int userId = res.getInt("fk_userId");
-//                int groupId = res.getInt("fk_groupId");
-                //måske lave alt om til setters og kun sende name over som førhen. MÅSKE.. :) - kan være vi skal se på det imorgen hvad der er bedst for os?
                 groups.add(new Group(id, name));
 
             }

@@ -36,8 +36,13 @@ public class create extends HttpServlet {
             String password = request.getParameter("password");
             String name = request.getParameter("name");
             String email = (String) request.getSession().getAttribute("email");
+            
+            
+            String userone = request.getParameter("userone");
+            String usertwo = request.getParameter("usertwo");
+            String userthree = request.getParameter("userthree");
 
-            dao.createGroup(name, password, email);
+            dao.createGroup(name, password, email, userone, usertwo, userthree);
             response.sendRedirect("dashboard");
 
         }
