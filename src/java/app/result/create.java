@@ -1,3 +1,8 @@
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
 package app.result;
 
 import app.data.DAO;
@@ -8,10 +13,10 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
 
-@WebServlet(urlPatterns = { "/workchat" })
-public class workchat extends HttpServlet {
+
+@WebServlet(urlPatterns = {"/create"})
+public class create extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -24,45 +29,18 @@ public class workchat extends HttpServlet {
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        String password;
-        String name;
-        String email;
-
-        DAO dao = new DAO();
-
-        try {
-            password = request.getParameter("password");
-            //System.out.println("User password: " + password);
-
-            name = request.getParameter("name");
-            // System.out.println("User name: " + name);
-
-            email = request.getParameter("email");
-            // System.out.println("User email: " + email);
-            
-            dao.createUser(name, password, email);
-            HttpSession session = request.getSession(true);
-            session.setAttribute("email", email);
-        
-        } catch (NumberFormatException ex) {
-            password = null;
-            name = null;
-            email = null;
-        }
-        if (name.isEmpty() || email.isEmpty()) {
-            response.sendRedirect("error.html");
-        }
-
-        response.setContentType("text/html;charset=UTF-8");
+        /* TODO output your page here. You may use following sample code. */
         try (PrintWriter out = response.getWriter()) {
-            /* TODO output your page here. You may use following sample code. */
+            DAO dao = new DAO();
 
+            String password = request.getParameter("password");
+            String name = request.getParameter("name");
+            String email = (String) request.getSession().getAttribute("email");
+
+            dao.createGroup(name, password, email);
             response.sendRedirect("dashboard");
-        }
-    }
 
-    private void errorMessage(HttpServletRequest request, HttpServletResponse response) throws IOException {
-        response.sendRedirect("error.html");
+        }
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">

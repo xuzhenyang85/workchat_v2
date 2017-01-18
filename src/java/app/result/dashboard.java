@@ -5,6 +5,7 @@
  */
 package app.result;
 
+import app.data.DAO;
 import java.io.IOException;
 import java.io.PrintWriter;
 import javax.servlet.ServletException;
@@ -14,10 +15,6 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-/**
- *
- * @author danny
- */
 @WebServlet(name = "dashboard", urlPatterns = {"/dashboard"})
 public class dashboard extends HttpServlet {
 
@@ -30,19 +27,22 @@ public class dashboard extends HttpServlet {
      * @throws ServletException if a servlet-specific error occurs
      * @throws IOException if an I/O error occurs
      */
+    
+    private String email;
+    
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         try (PrintWriter out = response.getWriter()) {
             /* TODO output your page here. You may use following sample code. */
-            String email = (String) request.getSession().getAttribute("email");
+            email = (String) request.getSession().getAttribute("email");
 
-            String myUrl = request.getContextPath();
-            System.out.println(myUrl);
             if (email == null) {
-                response.sendRedirect("error.html");
+                response.sendRedirect("login.html");
             } else {
-
+                
+                myRooms();
+                
                 out.println("<!DOCTYPE html>");
                 out.println("<head>");
                 out.println("<title>TODO supply a title</title>");
@@ -115,9 +115,9 @@ public class dashboard extends HttpServlet {
                 out.println("   <div>");
                 out.println(" <!-- Nav tabs -->");
                 out.println("    <ul class='nav nav-tabs' role='tablist'>");
-                out.println("    <li role='presentation' class='active'><a href='#home' aria-controls='home' role='tab' data-toggle='tab'>All rooms</a></li>");
-                out.println("    <li role='presentation'><a href='#profile' aria-controls='profile' role='tab' data-toggle='tab'>My rooms</a></li>");
-                out.println("    <li role='presentation'><a href='#messages' aria-controls='messages' role='tab' data-toggle='tab'>Create room</a></li>");
+                out.println("    <li role='presentation' class='active'><a href='#home' aria-controls='home' role='tab' data-toggle='tab'>All groups</a></li>");
+                out.println("    <li role='presentation'><a href='#profile' aria-controls='profile' role='tab' data-toggle='tab'>My groups</a></li>");
+                out.println("    <li role='presentation'><a href='#messages' aria-controls='messages' role='tab' data-toggle='tab'>Create group</a></li>");
                 out.println("</ul>");
 
                 out.println(" <!-- Tab panes -->");
@@ -163,7 +163,21 @@ public class dashboard extends HttpServlet {
                 out.println("       <h4 class='list-group-item-heading'>List group item heading</h4>");
                 out.println("       <p class='list-group-item-text'>...</p>");
                 out.println("    </a></div>");
-                out.println(" <div role='tabpanel' class='tab-pane' id='messages'>Create room</div>");
+                out.println(" <div role='tabpanel' class='tab-pane' id='messages'>"
+                        + ""
+                        + "<div class=\"col-md-12\" style=\"margin-top:20px;\">\n"
+                        + "                                    <form action=\"create\" method=\"GET\">\n"
+                        + "                                        <div class=\"form-group\">\n"
+                        + "                                            <label for=\"nameInput\">Group name</label>\n"
+                        + "                                            <input type=\"text\" class=\"form-control\" id=\"nameInput\" name=\"name\" placeholder=\"Group name\">\n"
+                        + "                                        </div>\n"
+                        + "                                        <div class=\"form-group\">\n"
+                        + "                                            <label for=\"passwordInput\">Password</label>\n"
+                        + "                                            <input type=\"text\" class=\"form-control\" id=\"passwordInput\" name=\"password\" placeholder=\"Password\">\n"
+                        + "                                        </div>\n"
+                        + "                                        <button type=\"submit\" class=\"btn btn-success col-md-5\">Create group</button>\n"
+                        + "                                    </form>\n"
+                        + "                                </div></div>");
                 out.println(" </div>");
                 out.println("  </div>");
                 out.println(" </div>");
@@ -173,6 +187,15 @@ public class dashboard extends HttpServlet {
                 out.println("</html>");
             }
         }
+    }
+    
+    public void allRooms() {
+        DAO dao = new DAO();
+    }
+    
+    public void myRooms(){
+        DAO dao = new DAO();
+        dao.checkMyGroups(email);   
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
