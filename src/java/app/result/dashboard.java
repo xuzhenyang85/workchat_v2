@@ -163,8 +163,10 @@ public class dashboard extends HttpServlet
                 out.println(" </div>");
                 out.println(" <div role='tabpanel' class='tab-pane' id='profile'>");
 
-                ArrayList<Group> mygroups = new ArrayList<>();
+                ArrayList<Group> mygroups;
+                
                 String email = (String) request.getSession().getAttribute("email");
+                
                 mygroups = dao.checkMyGroups(email);
 
                 for (int i = 0; i < mygroups.size(); i++)
@@ -186,30 +188,30 @@ public class dashboard extends HttpServlet
                 out.println(" <div role='tabpanel' class='tab-pane' id='messages'>"
                         + ""
                         + "<div class=\"col-md-12\" style=\"margin-top:20px;\">\n"
-                        + "                                    <form action=\\\"create\\\" method=\\\"GET\\\">\\n\"\n"
-                        + "                        + \"                                        <div class=\\\"form-group\\\">\\n\"\n"
-                        + "                        + \"                                            <label for=\\\"nameInput\\\">Group name</label>\\n\"\n"
-                        + "                        + \"                                            <input type=\\\"text\\\" class=\\\"form-control\\\" id=\\\"nameInput\\\" name=\\\"name\\\" placeholder=\\\"Group name\\\">\\n\"\n"
-                        + "                        + \"                                        </div>\\n\"\n"
-                        + "                        + \"                                        <div class=\\\"form-group\\\">\\n\"\n"
-                        + "                        + \"                                            <label for=\\\"passwordInput\\\">Password</label>\\n\"\n"
-                        + "                        + \"                                            <input type=\\\"text\\\" class=\\\"form-control\\\" id=\\\"passwordInput\\\" name=\\\"password\\\" placeholder=\\\"Password\\\">\\n\"\n"
-                        + "                        + \"                                        </div>\\n\"\n"
-                        + "                        + \"                                        <div class=\\\"form-group\\\">\\n\"\n"
-                        + "                        + \"                                            <label for=\\\"usertwo\\\">User 1</label>\\n\"\n"
-                        + "                        + \"                                            <input type=\\\"text\\\" class=\\\"form-control\\\" id=\\\"usertwo\\\" name=\\\"userone\\\" placeholder=\\\"email\\\">\\n\"\n"
-                        + "                        + \"                                        </div>\\n\"\n"
-                        + "                        + \"                                        <div class=\\\"form-group\\\">\\n\"\n"
-                        + "                        + \"                                            <label for=\\\"userthree\\\">User 2</label>\\n\"\n"
-                        + "                        + \"                                            <input type=\\\"text\\\" class=\\\"form-control\\\" id=\\\"userthree\\\" name=\\\"usertwo\\\" placeholder=\\\"email\\\">\\n\"\n"
-                        + "                        + \"                                        </div>\\n\"\n"
-                        + "                        + \"                                        <div class=\\\"form-group\\\">\\n\"\n"
-                        + "                        + \"                                            <label for=\\\"userfour\\\">User 3</label>\\n\"\n"
-                        + "                        + \"                                            <input type=\\\"text\\\" class=\\\"form-control\\\" id=\\\"userfour\\\" name=\\\"userthree\\\" placeholder=\\\"email\\\">\\n\"\n"
-                        + "                        + \"                                        </div>\\n\"\n"
-                        + "                        + \"                                        <button type=\\\"submit\\\" class=\\\"btn btn-success col-md-5\\\">Create group</button>\\n\"\n"
-                        + "                        + \"                                    </form>\\n\""
-                        + "" + "                                </div></div>");
+                        +"<form action=\"create\" method=\"GET\">\n"
+                        + "                                        <div class=\"form-group\">\n"
+                        + "                                            <label for=\"nameInput\">Group name</label>\n"
+                        + "                                            <input type=\"text\" class=\"form-control\" id=\"nameInput\" name=\"name\" placeholder=\"Group name\">\n"
+                        + "                                        </div>\n"
+                        + "                                        <div class=\"form-group\">\n"
+                        + "                                            <label for=\"passwordInput\">Password</label>\n"
+                        + "                                            <input type=\"text\" class=\"form-control\" id=\"passwordInput\" name=\"password\" placeholder=\"Password\">\n"
+                        + "                                        </div>\n"
+                        + "                                        <div class=\"form-group\">\n"
+                        + "                                            <label for=\"usertwo\">User 1</label>\n"
+                        + "                                            <input type=\"text\" class=\"form-control\" id=\"usertwo\" name=\"userone\" placeholder=\"email\">\n"
+                        + "                                        </div>\n"
+                        + "                                        <div class=\"form-group\">\n"
+                        + "                                            <label for=\"userthree\">User 2</label>\n"
+                        + "                                            <input type=\"text\" class=\"form-control\" id=\"userthree\" name=\"usertwo\" placeholder=\"email\">\n"
+                        + "                                        </div>\n"
+                        + "                                        <div class=\"form-group\">\n"
+                        + "                                            <label for=\"userfour\">User 3</label>\n"
+                        + "                                            <input type=\"text\" class=\"form-control\" id=\"userfour\" name=\"userthree\" placeholder=\"email\">\n"
+                        + "                                        </div>\n"
+                        + "                                        <button type=\"submit\" class=\"btn btn-success col-md-5\">Create group</button>\n"
+                        + "                                    </form>\n"
+                        + "                              </div></div>");
                 out.println(" </div>");
                 out.println("  </div>");
                 out.println(" </div>");
