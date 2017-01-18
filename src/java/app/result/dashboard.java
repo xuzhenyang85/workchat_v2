@@ -158,15 +158,15 @@ public class dashboard extends HttpServlet {
                         out.println("       <h4 class='list-group-item-heading'>" + groups.get(i).getName() + "</h4>");
                         out.println("       <p class='list-group-item-text'>...</p>");
                         out.println("    </a>");
+                        }
                         
-                        
-                        if(dao.getAllGroups().isEmpty()){
+                        if(dao.getAllGroups().isEmpty()) {
                             out.println("   <class='list-group-item'>");
                             out.println("       <h4 class='list-group-item-heading'>There are no groups available - try again later</h4>");
                             out.println("    </a>");
                         }
                         //out.println(groups.get(i).getName());
-                        }
+                        
                         
                 out.println("   </div>");
                 out.println(" </div>");
