@@ -50,7 +50,6 @@ public class dashboard extends HttpServlet
             } else
             {
 
-                myRooms();
 
                 out.println("<!DOCTYPE html>");
                 out.println("<head>");
