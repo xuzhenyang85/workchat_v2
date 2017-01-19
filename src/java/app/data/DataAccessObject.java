@@ -11,7 +11,7 @@ public interface DataAccessObject {
 
     public void createUser(String name, String password, String email);
 
-    public void newMessage(String msg, int userId, int roomId);
+    public void newMessage(String msg, String userId, String roomId);
 
     public void createGroup(String name, String password, String email, String userone, String usertwo, String userthree);
     
