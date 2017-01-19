@@ -50,7 +50,6 @@ public class dashboard extends HttpServlet
             } else
             {
 
-
                 out.println("<!DOCTYPE html>");
                 out.println("<head>");
                 out.println("<title>TODO supply a title</title>");
@@ -93,7 +92,8 @@ public class dashboard extends HttpServlet
                 out.println(" <span class='icon-bar'></span>");
                 out.println(" <span class='icon-bar'></span>");
                 out.println(" </button>");
-                out.println("   <a class='navbar-brand' href='#'>WORKGROUP - " + email + "</a>");
+                out.println("<a class='navbar-brand' href='index.html''><img alt='' src='img/logo.gif' width='50' height='50' style='margin-top: -15px;'' >" + email + "'</a>");
+                
                 out.println("   </div>");
 
                 out.println("  <div class='collapse navbar-collapse' id='bs-example-navbar-collapse-'>");
@@ -138,18 +138,21 @@ public class dashboard extends HttpServlet
 //                out.println("        <h4 class='list-group-item-heading'>List group item heading</h4>");
 //                out.println("        <p class='list-group-item-text'>...</p>");
 //                out.println("      </a>");
+                
+                //Show all groups in the list
                 DAO dao = new DAO();
                 ArrayList<Group> groups = new ArrayList<>();
                 groups = dao.getAllGroups();
 
                 for (int i = 0; i < groups.size(); i++)
                 {
-                    out.println("   <a href='room.html' class='list-group-item'>");
+                    out.println("   <a href='room?"+groups.get(i).getId()+"' class='list-group-item'>");
                     out.println("       <h4 class='list-group-item-heading'>" + groups.get(i).getName() + "</h4>");
                     out.println("       <p class='list-group-item-text'>...</p>");
                     out.println("    </a>");
                 }
-
+                
+                // if none group, return a text
                 if (dao.getAllGroups().isEmpty())
                 {
                     out.println("   <class='list-group-item'>");
@@ -161,14 +164,16 @@ public class dashboard extends HttpServlet
                 out.println("   </div>");
                 out.println(" </div>");
                 out.println(" <div role='tabpanel' class='tab-pane' id='profile'>");
-
+                
+                
                 ArrayList<Group> mygroups = new ArrayList<>();
-                String email = (String) request.getSession().getAttribute("email");
+                //String email = (String) request.getSession().getAttribute("email");
+                
                 mygroups = dao.checkMyGroups(email);
 
                 for (int i = 0; i < mygroups.size(); i++)
                 {
-                    out.println("   <a href='room.html' class='list-group-item'>");
+                    out.println("   <a href='room?groupId="+mygroups.get(i).getId()+"' class='list-group-item'>");
                     out.println("       <h4 class='list-group-item-heading'>" + mygroups.get(i).getName() + "</h4>");
                     out.println("       <p class='list-group-item-text'>...</p>");
                     out.println("    </a>");
@@ -184,31 +189,31 @@ public class dashboard extends HttpServlet
                 out.println("</div>");
                 out.println(" <div role='tabpanel' class='tab-pane' id='messages'>"
                         + ""
-                        + "<div class=\"col-md-12\" style=\"margin-top:20px;\">\n"
-                        + "                                    <form action=\\\"create\\\" method=\\\"GET\\\">\\n\"\n"
-                        + "                        + \"                                        <div class=\\\"form-group\\\">\\n\"\n"
-                        + "                        + \"                                            <label for=\\\"nameInput\\\">Group name</label>\\n\"\n"
-                        + "                        + \"                                            <input type=\\\"text\\\" class=\\\"form-control\\\" id=\\\"nameInput\\\" name=\\\"name\\\" placeholder=\\\"Group name\\\">\\n\"\n"
-                        + "                        + \"                                        </div>\\n\"\n"
-                        + "                        + \"                                        <div class=\\\"form-group\\\">\\n\"\n"
-                        + "                        + \"                                            <label for=\\\"passwordInput\\\">Password</label>\\n\"\n"
-                        + "                        + \"                                            <input type=\\\"text\\\" class=\\\"form-control\\\" id=\\\"passwordInput\\\" name=\\\"password\\\" placeholder=\\\"Password\\\">\\n\"\n"
-                        + "                        + \"                                        </div>\\n\"\n"
-                        + "                        + \"                                        <div class=\\\"form-group\\\">\\n\"\n"
-                        + "                        + \"                                            <label for=\\\"usertwo\\\">User 1</label>\\n\"\n"
-                        + "                        + \"                                            <input type=\\\"text\\\" class=\\\"form-control\\\" id=\\\"usertwo\\\" name=\\\"userone\\\" placeholder=\\\"email\\\">\\n\"\n"
-                        + "                        + \"                                        </div>\\n\"\n"
-                        + "                        + \"                                        <div class=\\\"form-group\\\">\\n\"\n"
-                        + "                        + \"                                            <label for=\\\"userthree\\\">User 2</label>\\n\"\n"
-                        + "                        + \"                                            <input type=\\\"text\\\" class=\\\"form-control\\\" id=\\\"userthree\\\" name=\\\"usertwo\\\" placeholder=\\\"email\\\">\\n\"\n"
-                        + "                        + \"                                        </div>\\n\"\n"
-                        + "                        + \"                                        <div class=\\\"form-group\\\">\\n\"\n"
-                        + "                        + \"                                            <label for=\\\"userfour\\\">User 3</label>\\n\"\n"
-                        + "                        + \"                                            <input type=\\\"text\\\" class=\\\"form-control\\\" id=\\\"userfour\\\" name=\\\"userthree\\\" placeholder=\\\"email\\\">\\n\"\n"
-                        + "                        + \"                                        </div>\\n\"\n"
-                        + "                        + \"                                        <button type=\\\"submit\\\" class=\\\"btn btn-success col-md-5\\\">Create group</button>\\n\"\n"
-                        + "                        + \"                                    </form>\\n\""
-                        + "" + "                                </div></div>");
+                        + "<div class='col-md-12' style='margin-top:20px;'>"
+                        + "<form action='create' method='GET'>"
+                        + "<div class='form-group'>"
+                        + "<label for='nameInput'>Group name</label>"
+                        + "<input type='text' class='form-control' id='nameInput' name='name' placeholder='Group name'>"
+                        + "</div>"
+                        + "<div class='form-group'>"
+                        + "<label for='passwordInput'>Password</label>"
+                        + "<input type='text' class='form-control' id='passwordInput' name='password' placeholder='Password'>"
+                        + "</div>"
+                        + "<div class='form-group'>"
+                        + "<label for='usertwo'>User 1</label>"
+                        + "<input type='text' class='form-control' id='usertwo' name='userone' placeholder='email'>"
+                        + "</div>"
+                        + "<div class='form-group'>"
+                        + "<label for='userthree'>User 2</label>"
+                        + "<input type='text' class='form-control' id='userthree' name='usertwo' placeholder='email'>"
+                        + "</div>"
+                        + "<div class='form-group'>"
+                        + "<label for='userfour'>User 3</label>"
+                        + "<input type='text' class='form-control' id='userfour' name='userthree' placeholder='email'>"
+                        + "</div>"
+                        + "<button type='submit' class='btn btn-success col-md-5'>Create group</button>"
+                        + "</form>"
+                        + "" + "</div></div>");
                 out.println(" </div>");
                 out.println("  </div>");
                 out.println(" </div>");
@@ -218,28 +223,6 @@ public class dashboard extends HttpServlet
                 out.println("</html>");
             }
         }
-    }
-
-    public void allRooms()
-    {
-        DAO dao = new DAO();
-        ArrayList<Group> groups = new ArrayList<>();
-        groups = dao.getAllGroups();
-
-        for (int i = 0; i < groups.size(); i++)
-        {
-            System.out.println("   <a href='room.html' class='list-group-item'>");
-            System.out.println("       <h4 class='list-group-item-heading'>" + groups.get(i).getName() + "");
-            System.out.println("       <p class='list-group-item-text'>...</p>");
-            System.out.println("    </a>");
-            //System.out.println(groups.get(i).getName());
-        }
-    }
-
-    public void myRooms()
-    {
-        DAO dao = new DAO();
-        dao.checkMyGroups(email);
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">

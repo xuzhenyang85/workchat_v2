@@ -15,10 +15,6 @@ public class Group
     {
         this.id = id;
         this.name = name;
-//        this.password = password;
-//        this.email = email;
-//        this.userId = userId;
-//        this.groupId = groupId;
     }
     
     
