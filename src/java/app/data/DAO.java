@@ -1,24 +1,23 @@
 package app.data;
 
 import app.user.Group;
+import app.user.MessageLog;
 import java.sql.ResultSet;
 import java.sql.Statement;
 import app.user.User;
+import java.sql.Timestamp;
 import java.util.ArrayList;
+import java.util.Date;
 
-public class DAO implements DataAccessObject
-{
+public class DAO implements DataAccessObject {
 
     @Override
-    public User getUser(String email)
-    {
-        try
-        {
+    public User getUser(String email) {
+        try {
             String query = "SELECT * FROM user WHERE email = " + email + ";";
             Statement stmt = new Connector().getConnection().createStatement();
             ResultSet res = stmt.executeQuery(query);
-            if (res.next())
-            {
+            if (res.next()) {
                 int id = res.getInt("id");
                 String username = res.getString("name");
                 String userEmail = res.getString("email");
@@ -27,8 +26,7 @@ public class DAO implements DataAccessObject
                 return users;
             }
             return null;
-        } catch (Exception ex)
-        {
+        } catch (Exception ex) {
             ex.printStackTrace();
             return null;
         }
@@ -36,23 +34,24 @@ public class DAO implements DataAccessObject
     }
 
     @Override
-    public void createUser(String name, String password, String email)
-    {
+    public void createUser(String name, String password, String email) {
 
         try {
             String query = "INSERT INTO user (name, password, email) VALUES ('" + name + "','" + password + "','" + email + "');";
             Statement stmt = new Connector().getConnection().createStatement();
             stmt.executeUpdate(query);
 
-        } catch (Exception ex)
-        {
+        } catch (Exception ex) {
         }
     }
 
     @Override
-    public void newMessage(String msg, int userId, int groupId, String timestamp) {
+    public void newMessage(String msg, String userId, String roomId) {
         try {
-            String query = "INSERT INTO logs (fk_userId,msg,fk_groupId,timestamp)" + "VALUES ('" +userId+"','"+ msg +"', '" + groupId + "','"+timestamp+"')";
+            java.util.Date date = new Date();
+            Timestamp timestamp = new Timestamp(date.getTime());
+
+            String query = "INSERT INTO logs (msg, userId, roomId, timestamp) " + "VALUES ('" + msg + "', '" + userId + "', '" + roomId + "', '" + timestamp + "')";
             Statement stmt = new Connector().getConnection().createStatement();
             ResultSet res = stmt.executeQuery(query);
 
@@ -71,7 +70,7 @@ public class DAO implements DataAccessObject
             query = "SELECT * FROM grouprooms WHERE groupName = '" + name + "' AND groupPassword = '" + password + "';";
             Statement stmt1 = new Connector().getConnection().createStatement();
             ResultSet res = stmt1.executeQuery(query);
-            
+
             int id = 0;
             if (res.next()) {
                 id = res.getInt("groupId");
@@ -97,25 +96,20 @@ public class DAO implements DataAccessObject
         }
     }
 
-    public boolean checkLogin(String email, String password)
-    {
-        try
-        {
+    public boolean checkLogin(String email, String password) {
+        try {
             String query = "SELECT * FROM user WHERE email = '" + email + "' AND password = '" + password + "';";
 
             Statement stmt = new Connector().getConnection().createStatement();
             ResultSet res = stmt.executeQuery(query);
 
-            if (res.next())
-            {
+            if (res.next()) {
                 return true;
-            } else
-            {
+            } else {
                 return false;
             }
 
-        } catch (Exception ex)
-        {
+        } catch (Exception ex) {
 
         }
         return false;
@@ -133,7 +127,7 @@ public class DAO implements DataAccessObject
             while (res.next()) {
                 int id = res.getInt("groupId");
                 String name = res.getString("groupName");
-                Group group = new Group(id,name); 
+                Group group = new Group(id, name);
                 groups.add(group);
                 System.out.println(groups);
             }
@@ -154,45 +148,62 @@ public class DAO implements DataAccessObject
     }
 
     public void acceptInvitation() {
-        
+
     }
 
     public void checkAllGroups() {
         try {
             String query = "SELECT * FROM grouprooms";
-            
+
             Statement stmt = new Connector().getConnection().createStatement();
             ResultSet res = stmt.executeQuery(query);
             ArrayList<Group> groups = new ArrayList<>();
-            
-            
-            
+
         } catch (Exception ex) {
-            
+
         }
     }
+
     @Override
-    public ArrayList<Group> checkMyGroups(String email)
-    {
-        try
-        {
-            String query = "SELECT * FROM grouprooms INNER JOIN groups INNER JOIN user ON grouprooms.groupId = groups.fk_groupId AND user.email = groups.fk_userId WHERE user.email ='"+email+"';";
+    public ArrayList<Group> checkMyGroups(String email) {
+        try {
+            String query = "SELECT * FROM grouprooms INNER JOIN groups INNER JOIN user ON grouprooms.groupId = groups.fk_groupId AND user.email = groups.fk_userId WHERE user.email ='" + email + "';";
             Statement stmt = new Connector().getConnection().createStatement();
             ResultSet res = stmt.executeQuery(query);
             ArrayList<Group> groups = new ArrayList<>();
-            while (res.next())
-            {
+            while (res.next()) {
                 int id = res.getInt("groupId");
                 String name = res.getString("groupName");
                 groups.add(new Group(id, name));
 
             }
             return groups;
-        } catch (Exception ex)
-        {
+        } catch (Exception ex) {
             ex.printStackTrace();
             return null;
         }
 
+    }
+
+    @Override
+    public ArrayList<MessageLog> getMessages(int groupId) {
+        try {
+            String query = "SELECT * FROM logs WHERE fk_groupId = '" + groupId + "'ORDER BY DESC;";
+            Statement stmt = new Connector().getConnection().createStatement();
+            ResultSet res = stmt.executeQuery(query);
+            ArrayList<MessageLog> logs = new ArrayList<>();
+            while (res.next()) {
+                int id = res.getInt("id");
+                String msg = res.getString("msg");
+                String userId = res.getString("fk_userId");
+                int fk_groupId = res.getInt("fk_groupId");
+                String timestamp = res.getString("timestamp");
+                logs.add(new MessageLog(id, msg, userId, fk_groupId, timestamp));
+            }
+            return logs;
+        } catch (Exception ex) {
+            ex.printStackTrace();
+            return null;
+        }
     }
 }
