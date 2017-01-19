@@ -13,12 +13,11 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-@WebServlet(name = "room", urlPatterns =
-{
-    "/room"
-})
-public class room extends HttpServlet
-{
+@WebServlet(name = "room", urlPatterns
+        = {
+            "/room"
+        })
+public class room extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -33,8 +32,7 @@ public class room extends HttpServlet
     private String email;
     
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException
-    {
+            throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         try (PrintWriter out = response.getWriter())
         {
@@ -73,7 +71,7 @@ public class room extends HttpServlet
                     + "                                <span class='icon-bar'></span> "
                     + "                                <span class='icon-bar'></span> "
                     + "                            </button> "
-                    + "                            <a class='navbar-brand' href='index.html''><img alt='' src='img/logo.gif' width='50' height='50' style='margin-top: -15px;'' >'" + email + "'</a>"+ "</div> "
+                    + "                            <a class='navbar-brand' href='index.html''><img alt='' src='img/logo.gif' width='50' height='50' style='margin-top: -15px;'' >" + email + "</a>"+ "</div> "
                     + " "
                     + "                        <!-- Collect the nav links, forms, and other content for toggling --> "
                     + "                        <div class='collapse navbar-collapse' id='bs-example-navbar-collapse-1'> "
@@ -158,8 +156,7 @@ public class room extends HttpServlet
      */
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException
-    {
+            throws ServletException, IOException {
         processRequest(request, response);
     }
 
@@ -173,8 +170,7 @@ public class room extends HttpServlet
      */
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException
-    {
+            throws ServletException, IOException {
         processRequest(request, response);
     }
 
@@ -184,8 +180,7 @@ public class room extends HttpServlet
      * @return a String containing servlet description
      */
     @Override
-    public String getServletInfo()
-    {
+    public String getServletInfo() {
         return "Short description";
     }// </editor-fold>
 
