@@ -5,7 +5,9 @@ import app.user.MessageLog;
 import java.sql.ResultSet;
 import java.sql.Statement;
 import app.user.User;
+import java.sql.Timestamp;
 import java.util.ArrayList;
+import java.util.Date;
 
 public class DAO implements DataAccessObject {
 
@@ -44,9 +46,12 @@ public class DAO implements DataAccessObject {
     }
 
     @Override
-    public void newMessage(String msg, int userId, int roomId) {
+    public void newMessage(String msg, String userId, String roomId) {
         try {
-            String query = "INSERT INTO logs " + "VALUES ('" + msg + "', '" + roomId + "')";
+            java.util.Date date = new Date();
+            Timestamp timestamp = new Timestamp(date.getTime());
+
+            String query = "INSERT INTO logs (msg, userId, roomId, timestamp) " + "VALUES ('" + msg + "', '" + userId + "', '" + roomId + "', '" + timestamp + "')";
             Statement stmt = new Connector().getConnection().createStatement();
             ResultSet res = stmt.executeQuery(query);
 
@@ -183,15 +188,17 @@ public class DAO implements DataAccessObject {
     @Override
     public ArrayList<MessageLog> getMessages(int groupId) {
         try {
-            String query = "SELECT * FROM logs WHERE fk_groupId = '" + groupId + "';";
+            String query = "SELECT * FROM logs WHERE fk_groupId = '" + groupId + "'ORDER BY DESC;";
             Statement stmt = new Connector().getConnection().createStatement();
             ResultSet res = stmt.executeQuery(query);
             ArrayList<MessageLog> logs = new ArrayList<>();
             while (res.next()) {
-                //int id = res.getInt("groupId");
-                //String name = res.getString("groupName");
-                logs.add(new MessageLog());
-
+                int id = res.getInt("id");
+                String msg = res.getString("msg");
+                String userId = res.getString("fk_userId");
+                int fk_groupId = res.getInt("fk_groupId");
+                String timestamp = res.getString("timestamp");
+                logs.add(new MessageLog(id, msg, userId, fk_groupId, timestamp));
             }
             return logs;
         } catch (Exception ex) {
