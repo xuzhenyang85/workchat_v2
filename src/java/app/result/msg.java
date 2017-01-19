@@ -39,7 +39,7 @@ public class msg extends HttpServlet {
         String email = (String) request.getSession().getAttribute("email");
 
         dao.newMessage(msg, email, groupId);
-        response.sendRedirect("dashboard");
+        response.sendRedirect("room?groupId="+groupId+"");
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
