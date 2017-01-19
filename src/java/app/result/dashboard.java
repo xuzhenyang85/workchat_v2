@@ -142,9 +142,7 @@ public class dashboard extends HttpServlet {
                     out.println("   <class='list-group-item'>");
                     out.println("       <h4 class='list-group-item-heading' style='margin-top:20px'>There are no groups available - might wanna create a new group?</h4>");
                     out.println("    </a>");
-                }
-                //out.println(groups.get(i).getName());
- 
+                } 
                 out.println("   </div>");
                 out.println(" </div>");
                 out.println(" <div role='tabpanel' class='tab-pane' id='profile'>");

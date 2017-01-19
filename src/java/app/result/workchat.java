@@ -24,7 +24,7 @@ public class workchat extends HttpServlet {
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-            String password;
+        String password;
         String name;
         String email;
 
