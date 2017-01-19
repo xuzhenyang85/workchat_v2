@@ -16,6 +16,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 @WebServlet(name = "room", urlPatterns
         = {
@@ -44,6 +45,11 @@ public class room extends HttpServlet {
             if (email == null) {
                 response.sendRedirect("login.html");
             } else {
+                String tmp = request.getParameter("groupId");
+                int id = Integer.parseInt(tmp);
+                
+                HttpSession session = request.getSession(true);
+                session.setAttribute("groupId", id);
                 out.println("<!DOCTYPE html> "
                         + "<!-- "
                         + "To change this license header, choose License Headers in Project Properties. "
@@ -57,7 +63,14 @@ public class room extends HttpServlet {
                         + "        <meta name='viewport' content='width=device-width, initial-scale=1.0'> "
                         + "        <link rel='stylesheet' type='text/css' href='css/reset.css'> "
                         + "        <link rel='stylesheet' type='text/css' href='css/bootstrap-theme.css'> "
-                        + "        <link rel='stylesheet' type='text/css' href='css/bootstrap.css'> "
+                        + "        <link rel='stylesheet' type='text/css' href='css/bootstrap.css'>"
+                        + "<script src='https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js'></script><script>"
+                        + "window.setInterval(function(){"
+                        + "     $.get('ajax', function(responseText) {"
+                        + "         $('#messages').html(responseText);"
+                        + "     });"
+                        + "}, 5000);"
+                        + "</script>"
                         + "    </head> "
                         + "    <body> "
                         + "        <div class='container-fluid' style='text-align:center;'> "
@@ -104,14 +117,11 @@ public class room extends HttpServlet {
                         + "                    </div> "
                         + "                </div> "
                         + "                <div class='col-md-4' style='border: 1px solid #e1e1e1; border-radius:2px;padding-top:20;'> "
-                        + "                    <div class='col-md-12' style='max-height:500px;overflow:auto;margin:30px 0px;'> "
+                        + "                    <div class='col-md-12' id='messages' style='max-height:500px;overflow:auto;margin:30px 0px;'> "
                 );
                 DAO dao = new DAO();
                 ArrayList<MessageLog> logs;
-                String tmp = request.getParameter("groupId");
-                int id = Integer.parseInt(tmp);
                 logs = dao.getMessages(id);
-
                 for (int i = 0; i < logs.size(); i++) {
                     out.println("       "
                             + "                        <blockquote style='text-align:left;'> "
