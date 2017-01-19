@@ -47,13 +47,12 @@ public class DAO implements DataAccessObject {
 
     @Override
     public void newMessage(String msg, String userId, int groupId) {
+        java.util.Date date = new Date();
+        Timestamp timestamp = new Timestamp(date.getTime());
         try {
-            java.util.Date date = new Date();
-            Timestamp timestamp = new Timestamp(date.getTime());
-
-            String query = "INSERT INTO logs (msg, userId, roomId, timestamp) " + "VALUES ('" + msg + "', '" + userId + "', '" + groupId + "', '" + timestamp + "')";
+            String query = "INSERT INTO logs (fk_userId, msg, fk_groupId, timestamp) VALUES ('" + userId + "', '" + msg + "', " + groupId + ", '" + timestamp + "');";
             Statement stmt = new Connector().getConnection().createStatement();
-            ResultSet res = stmt.executeQuery(query);
+            stmt.executeUpdate(query);
 
         } catch (Exception ex) {
         }
@@ -188,7 +187,7 @@ public class DAO implements DataAccessObject {
     @Override
     public ArrayList<MessageLog> getMessages(int groupId) {
         try {
-            String query = "SELECT * FROM logs WHERE fk_groupId = '" + groupId + "'ORDER BY DESC;";
+            String query = "SELECT * FROM logs WHERE fk_groupId = '" + groupId + "'ORDER BY timestamp DESC;";
             Statement stmt = new Connector().getConnection().createStatement();
             ResultSet res = stmt.executeQuery(query);
             ArrayList<MessageLog> logs = new ArrayList<>();

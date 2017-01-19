@@ -115,17 +115,17 @@ public class room extends HttpServlet {
                 for (int i = 0; i < logs.size(); i++) {
                     out.println("       "
                             + "                        <blockquote style='text-align:left;'> "
-                            + "                            <footer>" + logs.get(i).getFk_userId() + "<cite title='Source Title'>" + logs.get(i).getTimestamp() + "</cite></footer> "
+                            + "                            <footer>" + logs.get(i).getFk_userId() + "  <cite title='Source Title'>" + logs.get(i).getTimestamp() + "</cite></footer> "
                             + "                            <p>" + logs.get(i).getMsg() + "</p> "
                             + "                        </blockquote>");
                 }
-                out.println("                  <form action='msg'> "
+                out.println("                  </div> <form action='msg'> "
                         + "<input type='hidden' value='" + id + "' name='groupIdField' />"
-                        + "<textarea name='msg' class='form-control' rows='3'></textarea><!-- Indicates a successful or positive action --> "
+                        + "<textarea name='msg' class='form-control' rows='3'></textarea>"
                         + " "
                         + " "
-                        + "                    <button type='button' class='btn btn-success col-md-4 col-md-offset-8' style='margin-top:20px;margin-bottom:20px;'>Send</button></form> "
-                        + "                </div></div></div> "
+                        + "                    <button type='submit' class='btn btn-success col-md-4 col-md-offset-8' style='margin-top:20px;margin-bottom:20px;'>Send</button></form> "
+                        + "                </div></div>"
                         + "                <div class='col-md-4'> "
                         + "                    <div class='col-md-12' style='margin-bottom:20px;'><img src='http://placehold.it/150x150' alt='...' class='img-thumbnail col-md-4'> "
                         + "                    </div> "
