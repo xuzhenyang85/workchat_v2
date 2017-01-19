@@ -17,12 +17,11 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-@WebServlet(name = "dashboard", urlPatterns =
-{
-    "/dashboard"
-})
-public class dashboard extends HttpServlet
-{
+@WebServlet(name = "dashboard", urlPatterns
+        = {
+            "/dashboard"
+        })
+public class dashboard extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -36,19 +35,15 @@ public class dashboard extends HttpServlet
     private String email;
 
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException
-    {
+            throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
-        try (PrintWriter out = response.getWriter())
-        {
+        try (PrintWriter out = response.getWriter()) {
             /* TODO output your page here. You may use following sample code. */
             email = (String) request.getSession().getAttribute("email");
 
-            if (email == null)
-            {
+            if (email == null) {
                 response.sendRedirect("login.html");
-            } else
-            {
+            } else {
 
                 myRooms();
 
@@ -99,9 +94,7 @@ public class dashboard extends HttpServlet
 
                 out.println("  <div class='collapse navbar-collapse' id='bs-example-navbar-collapse-'>");
                 out.println("<ul class='nav navbar-nav navbar-right'>");
-                out.println("<form action='logout' method='POST'>");
-                out.println("  <li><button type='submit'>Log out</button></li>");
-                out.println("</form>");
+                out.println("  <li><a href='logout'>Log out</a></li>");
 
                 out.println("  <li class='dropdown'>");
                 out.println("  <a href='#' class='dropdown-toggle' data-toggle='dropdown' role='button' aria-haspopup='true' aria-expanded='false'>Dropdown <span class='caret'></span></a>");
@@ -134,27 +127,20 @@ public class dashboard extends HttpServlet
                 out.println("  <div role='tabpanel' class='tab-pane active' id='home'>");
                 out.println("   <div class='list-group'>");
 
-//                    
-//                out.println("    <a href='room.html' class='list-group-item'>");
-//                out.println("        <h4 class='list-group-item-heading'>List group item heading</h4>");
-//                out.println("        <p class='list-group-item-text'>...</p>");
-//                out.println("      </a>");
                 DAO dao = new DAO();
                 ArrayList<Group> groups = new ArrayList<>();
                 groups = dao.getAllGroups();
 
-                for (int i = 0; i < groups.size(); i++)
-                {
-                    out.println("   <a href='room.html' class='list-group-item'>");
+                for (int i = 0; i < groups.size(); i++) {
+                    out.println("   <a href='room' class='list-group-item'>");
                     out.println("       <h4 class='list-group-item-heading'>" + groups.get(i).getName() + "</h4>");
                     out.println("       <p class='list-group-item-text'>...</p>");
                     out.println("    </a>");
                 }
 
-                if (dao.getAllGroups().isEmpty())
-                {
+                if (dao.getAllGroups().isEmpty()) {
                     out.println("   <class='list-group-item'>");
-                    out.println("       <h4 class='list-group-item-heading'>There are no groups available - try again later</h4>");
+                    out.println("       <h4 class='list-group-item-heading' style='margin-top:20px'>There are no groups available - might wanna create a new group?</h4>");
                     out.println("    </a>");
                 }
                 //out.println(groups.get(i).getName());
@@ -164,21 +150,19 @@ public class dashboard extends HttpServlet
                 out.println(" <div role='tabpanel' class='tab-pane' id='profile'>");
 
                 ArrayList<Group> mygroups;
-                
+
                 String email = (String) request.getSession().getAttribute("email");
-                
+
                 mygroups = dao.checkMyGroups(email);
 
-                for (int i = 0; i < mygroups.size(); i++)
-                {
-                    out.println("   <a href='room.html' class='list-group-item'>");
+                for (int i = 0; i < mygroups.size(); i++) {
+                    out.println("   <a href='room' class='list-group-item'>");
                     out.println("       <h4 class='list-group-item-heading'>" + mygroups.get(i).getName() + "</h4>");
                     out.println("       <p class='list-group-item-text'>...</p>");
                     out.println("    </a>");
                 }
 
-                if (dao.checkMyGroups(email).isEmpty())
-                {
+                if (dao.checkMyGroups(email).isEmpty()) {
                     out.println("   <class='list-group-item'>");
                     out.println("       <h4 class='list-group-item-heading'>There are no groups available - try again later</h4>");
                     out.println("    </a>");
@@ -188,7 +172,7 @@ public class dashboard extends HttpServlet
                 out.println(" <div role='tabpanel' class='tab-pane' id='messages'>"
                         + ""
                         + "<div class=\"col-md-12\" style=\"margin-top:20px;\">\n"
-                        +"<form action=\"create\" method=\"GET\">\n"
+                        + "<form action=\"create\" method=\"GET\">\n"
                         + "                                        <div class=\"form-group\">\n"
                         + "                                            <label for=\"nameInput\">Group name</label>\n"
                         + "                                            <input type=\"text\" class=\"form-control\" id=\"nameInput\" name=\"name\" placeholder=\"Group name\">\n"
@@ -223,14 +207,12 @@ public class dashboard extends HttpServlet
         }
     }
 
-    public void allRooms()
-    {
+    public void allRooms() {
         DAO dao = new DAO();
         ArrayList<Group> groups = new ArrayList<>();
         groups = dao.getAllGroups();
 
-        for (int i = 0; i < groups.size(); i++)
-        {
+        for (int i = 0; i < groups.size(); i++) {
             System.out.println("   <a href='room.html' class='list-group-item'>");
             System.out.println("       <h4 class='list-group-item-heading'>" + groups.get(i).getName() + "");
             System.out.println("       <p class='list-group-item-text'>...</p>");
@@ -239,8 +221,7 @@ public class dashboard extends HttpServlet
         }
     }
 
-    public void myRooms()
-    {
+    public void myRooms() {
         DAO dao = new DAO();
         dao.checkMyGroups(email);
     }
@@ -256,8 +237,7 @@ public class dashboard extends HttpServlet
      */
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException
-    {
+            throws ServletException, IOException {
         processRequest(request, response);
     }
 
@@ -271,8 +251,7 @@ public class dashboard extends HttpServlet
      */
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException
-    {
+            throws ServletException, IOException {
         processRequest(request, response);
     }
 
@@ -282,8 +261,7 @@ public class dashboard extends HttpServlet
      * @return a String containing servlet description
      */
     @Override
-    public String getServletInfo()
-    {
+    public String getServletInfo() {
         return "Short description";
     }// </editor-fold>
 

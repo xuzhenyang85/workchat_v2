@@ -24,7 +24,7 @@ public class workchat extends HttpServlet {
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        String password;
+            String password;
         String name;
         String email;
 
@@ -39,11 +39,11 @@ public class workchat extends HttpServlet {
 
             email = request.getParameter("email");
             // System.out.println("User email: " + email);
-            
+
             dao.createUser(name, password, email);
             HttpSession session = request.getSession(true);
             session.setAttribute("email", email);
-        
+
         } catch (NumberFormatException ex) {
             password = null;
             name = null;

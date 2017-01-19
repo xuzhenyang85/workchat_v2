@@ -13,12 +13,11 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-@WebServlet(name = "room", urlPatterns =
-{
-    "/room"
-})
-public class room extends HttpServlet
-{
+@WebServlet(name = "room", urlPatterns
+        = {
+            "/room"
+        })
+public class room extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -30,11 +29,9 @@ public class room extends HttpServlet
      * @throws IOException if an I/O error occurs
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException
-    {
+            throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
-        try (PrintWriter out = response.getWriter())
-        {
+        try (PrintWriter out = response.getWriter()) {
             out.println("<!DOCTYPE html>\n"
                     + "<!--\n"
                     + "To change this license header, choose License Headers in Project Properties.\n"
@@ -69,7 +66,7 @@ public class room extends HttpServlet
                     + "                        <!-- Collect the nav links, forms, and other content for toggling -->\n"
                     + "                        <div class='collapse navbar-collapse' id='bs-example-navbar-collapse-1'>\n"
                     + "                            <ul class='nav navbar-nav navbar-right'>\n"
-                    + "                                <li><a href='#'>Link</a></li>\n"
+                    + "  <li><a href='logout'>Log out</a></li>"
                     + "                                <li class='dropdown'>\n"
                     + "                                    <a href='#' class='dropdown-toggle' data-toggle='dropdown' role='button' aria-haspopup='true' aria-expanded='false'>Dropdown <span class='caret'></span></a>\n"
                     + "                                    <ul class='dropdown-menu'>\n"
@@ -149,8 +146,7 @@ public class room extends HttpServlet
      */
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException
-    {
+            throws ServletException, IOException {
         processRequest(request, response);
     }
 
@@ -164,8 +160,7 @@ public class room extends HttpServlet
      */
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException
-    {
+            throws ServletException, IOException {
         processRequest(request, response);
     }
 
@@ -175,8 +170,7 @@ public class room extends HttpServlet
      * @return a String containing servlet description
      */
     @Override
-    public String getServletInfo()
-    {
+    public String getServletInfo() {
         return "Short description";
     }// </editor-fold>
 
