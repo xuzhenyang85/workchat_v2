@@ -74,8 +74,8 @@ public class DAOTest {
     public void testNewMessage() {
         System.out.println("newMessage");
         String msg = "";
-        int userId = 0;
-        int roomId = 0;
+        String userId = "";
+        String roomId = "";
         DAO instance = new DAO();
         instance.newMessage(msg, userId, roomId);
     }
