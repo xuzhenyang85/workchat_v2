@@ -35,7 +35,7 @@ public class msg extends HttpServlet {
         DAO dao = new DAO();
 
         String msg = request.getParameter("msg");
-        String groupId = request.getParameter("groupIdField");
+        int groupId = Integer.parseInt(request.getParameter("groupIdField"));
         String email = (String) request.getSession().getAttribute("email");
 
         dao.newMessage(msg, email, groupId);

@@ -46,12 +46,12 @@ public class DAO implements DataAccessObject {
     }
 
     @Override
-    public void newMessage(String msg, String userId, String roomId) {
+    public void newMessage(String msg, String userId, int groupId) {
         try {
             java.util.Date date = new Date();
             Timestamp timestamp = new Timestamp(date.getTime());
 
-            String query = "INSERT INTO logs (msg, userId, roomId, timestamp) " + "VALUES ('" + msg + "', '" + userId + "', '" + roomId + "', '" + timestamp + "')";
+            String query = "INSERT INTO logs (msg, userId, roomId, timestamp) " + "VALUES ('" + msg + "', '" + userId + "', '" + groupId + "', '" + timestamp + "')";
             Statement stmt = new Connector().getConnection().createStatement();
             ResultSet res = stmt.executeQuery(query);
 
