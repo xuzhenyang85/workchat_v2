@@ -89,8 +89,7 @@ public class dashboard extends HttpServlet {
                         + "                                <span class='icon-bar'></span> "
                         + "                                <span class='icon-bar'></span> "
                         + "                            </button> "
-                        + "                            <a class='navbar-brand' href='index.html''><img alt='' src='img/logo.gif' width='50' height='50' style='margin-top: -15px;'' ></a></div> "
-                        +"<a href='#' >"+email+"</a>"
+                        + "                            <a class='navbar-brand' href='index.html''><img alt='' src='img/logo.gif' width='50' height='50' style='margin-top: -15px;'' ></a> </div>"
                         + " "
                         + "                        <!-- Collect the nav links, forms, and other content for toggling --> ");
  

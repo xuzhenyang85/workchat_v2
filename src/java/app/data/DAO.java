@@ -5,9 +5,14 @@ import app.user.MessageLog;
 import java.sql.ResultSet;
 import java.sql.Statement;
 import app.user.User;
+import java.io.IOException;
+import java.io.PrintWriter;
 import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.Date;
+import javax.servlet.ServletException;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 
 public class DAO implements DataAccessObject {
 
@@ -226,6 +231,23 @@ public class DAO implements DataAccessObject {
             return null;
         }
     }
-    
-    
+    public void userName(int groupId, HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
+        try {
+            String query = "SELECT name FROM user INNER JOIN groups ON groups.fk_userId = user.email WHERE groups.fk_groupId = "+groupId+";";
+            
+            Statement stmt = new Connector().getConnection().createStatement();
+            ResultSet res = stmt.executeQuery(query);
+            PrintWriter out = response.getWriter();
+            while (res.next()) {
+                String name = res.getString("name");
+                out.println("<div class='col-md-12' style='margin-bottom:20px;'><img src='img/m_icon.png' width='80' alt='...' class='img-thumbnail col-md-4 col-md-offset-8'> "
+                        +"                     <p style='text-align:right;'>" + name +"</p>"
+                        + "                    </div> ");
+            }
+        } catch(Exception ex) {
+            
+        }
+    }
+
 }

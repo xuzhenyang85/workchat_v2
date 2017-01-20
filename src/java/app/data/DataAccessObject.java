@@ -20,4 +20,5 @@ public interface DataAccessObject {
     public ArrayList<Group> checkMyGroups(String email);
     
     public ArrayList<MessageLog> getMessages(int groupId);
+   
 }
