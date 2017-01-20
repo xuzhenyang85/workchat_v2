@@ -1,11 +1,19 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project-private xmlns="http://www.netbeans.org/ns/project-private/1">
-    <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="1">
+    <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="2">
+        <file>
+            <url>src/java/app/result/room.java</url>
+            <bookmark id="2">
+                <name/>
+                <line>69</line>
+                <key/>
+            </bookmark>
+        </file>
         <file>
             <url>web/login.html</url>
             <bookmark id="1">
                 <name/>
-                <line>58</line>
+                <line>60</line>
                 <key/>
             </bookmark>
         </file>
@@ -13,10 +21,7 @@
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
             <file>file:/Users/Moonniuniu/Desktop/Backup/Workchat/workchat/src/java/app/result/room.java</file>
-            <file>file:/Users/Moonniuniu/Desktop/Backup/Workchat/workchat/web/login.html</file>
-            <file>file:/Users/Moonniuniu/Desktop/Backup/Workchat/workchat/src/java/app/result/dashboard.java</file>
-            <file>file:/Users/Moonniuniu/Desktop/Backup/Workchat/workchat/web/create.html</file>
-            <file>file:/Users/Moonniuniu/Desktop/Backup/Workchat/workchat/src/java/app/data/DAO.java</file>
+            <file>file:/Users/Moonniuniu/Desktop/Backup/Workchat/workchat/web/index.html</file>
         </group>
     </open-files>
 </project-private>
