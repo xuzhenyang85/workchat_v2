@@ -155,7 +155,7 @@ public class dashboard extends HttpServlet {
                mygroups = dao.checkMyGroups(email);
  
                 for (int i = 0; i < mygroups.size(); i++) {
-                    out.println("   <a href='room?=groupId="+mygroups.get(i).getId()+"' class='list-group-item'>");
+                    out.println("   <a href='room?groupId="+mygroups.get(i).getId()+"' class='list-group-item'>");
                     out.println("       <h4 class='list-group-item-heading'>" + mygroups.get(i).getName() + "</h4>");
                     out.println("       <p class='list-group-item-text'>...</p>");
                     out.println("    </a>");
