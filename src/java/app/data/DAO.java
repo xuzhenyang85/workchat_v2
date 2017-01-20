@@ -52,17 +52,11 @@ public class DAO implements DataAccessObject {
             Statement stmt = new Connector().getConnection().createStatement();
             ResultSet res = stmt.executeQuery(query);
             
-            while(res.next()){
-                String userName = res.getString("name");
-                System.out.println(userName);
-                String userEmail = res.getString("email");
-                System.out.println(userEmail);
-                if(userName!= null && userEmail!= null){
-                    return true;
-                }
-                else{
-                    return false;
-                }
+            if(res.next()){
+                return true;
+            }
+            else{
+                return false;
             }
         }
         catch(Exception ex){
