@@ -5,7 +5,6 @@
  */
 package app.data;
 
-import app.user.Group;
 import app.user.MessageLog;
 import app.user.User;
 import java.util.ArrayList;
@@ -18,25 +17,25 @@ import static org.junit.Assert.*;
 
 /**
  *
- * @author Peter
+ * @author danny
  */
 public class DAOTest {
-    
+
     public DAOTest() {
     }
-    
+
     @BeforeClass
     public static void setUpClass() {
     }
-    
+
     @AfterClass
     public static void tearDownClass() {
     }
-    
+
     @Before
     public void setUp() {
     }
-    
+
     @After
     public void tearDown() {
     }
@@ -101,10 +100,16 @@ public class DAOTest {
      */
     @Test
     public void testCheckLogin() {
-        System.out.println("checkLogin");
-        String email = "Peter@email.dk";
+        System.out.println("createUser");
+        String name = "Peter";
         String password = "Peter";
+        String email = "Peter@email.dk";
         DAO instance = new DAO();
+        instance.createUser(name, password, email);
+        
+        System.out.println("checkLogin");
+        email = "Peter@email.dk";
+        password = "Peter";
         boolean expResult = true;
         boolean result = instance.checkLogin(email, password);
         assertEquals(expResult, result);
@@ -150,17 +155,4 @@ public class DAOTest {
         instance.checkAllGroups();
     }
 
-    /**
-     * Test of getMessages method, of class DAO.
-     */
-    @Test
-    public void testGetMessages() {
-        System.out.println("getMessages");
-        int groupId = 0;
-        DAO instance = new DAO();
-        ArrayList<MessageLog> expResult = instance.getMessages(groupId);
-        ArrayList<MessageLog> result = instance.getMessages(groupId);
-        assertEquals(expResult, result);
-    }
-    
 }
