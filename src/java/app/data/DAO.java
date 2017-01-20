@@ -49,6 +49,27 @@ public class DAO implements DataAccessObject {
         } catch (Exception ex) {
         }
     }
+    
+    @Override
+    public boolean isAlreadyUser(String name,String email){
+        try{
+            String query ="SELECT name, email FROM user WHERE name='"+name+"' AND email='"+email+"';";
+            Statement stmt = new Connector().getConnection().createStatement();
+            ResultSet res = stmt.executeQuery(query);
+            
+            if(res.next()){
+                return true;
+            }
+            else{
+                return false;
+            }
+        }
+        catch(Exception ex){
+            ex.printStackTrace();
+            
+        }
+        return false;
+    }
 
     @Override
     public void newMessage(String msg, String userId, int groupId) {
@@ -140,18 +161,6 @@ public class DAO implements DataAccessObject {
             ex.printStackTrace();
             return null;
         }
-
-    }
-
-    public void sendInvitation() {
-
-    }
-
-    public void seeInvitation() {
-
-    }
-
-    public void acceptInvitation() {
 
     }
 

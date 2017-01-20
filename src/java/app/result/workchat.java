@@ -10,8 +10,12 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-@WebServlet(urlPatterns = { "/workchat" })
-public class workchat extends HttpServlet {
+@WebServlet(urlPatterns =
+{
+    "/workchat"
+})
+public class workchat extends HttpServlet
+{
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -23,45 +27,47 @@ public class workchat extends HttpServlet {
      * @throws IOException if an I/O error occurs
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException {
+            throws ServletException, IOException
+    {
         String password;
         String name;
         String email;
 
         DAO dao = new DAO();
 
-        try {
+        try
+        {
             password = request.getParameter("password");
-            //System.out.println("User password: " + password);
 
             name = request.getParameter("name");
-            // System.out.println("User name: " + name);
 
             email = request.getParameter("email");
-            // System.out.println("User email: " + email);
 
-            dao.createUser(name, password, email);
-            HttpSession session = request.getSession(true);
-            session.setAttribute("email", email);
-
-        } catch (NumberFormatException ex) {
+            if (name.isEmpty() || email.isEmpty())
+            {
+                response.sendRedirect("error.html");
+            }
+            if (dao.isAlreadyUser(name, email))
+            {
+                response.sendRedirect("error.html");
+            } else
+            {
+                dao.createUser(name, password, email);
+                HttpSession session = request.getSession(true);
+                session.setAttribute("email", email);
+                response.sendRedirect("dashboard");
+            }
+        } catch (NumberFormatException ex)
+        {
             password = null;
             name = null;
             email = null;
         }
-        if (name.isEmpty() || email.isEmpty()) {
-            response.sendRedirect("error.html");
-        }
 
-        response.setContentType("text/html;charset=UTF-8");
-        try (PrintWriter out = response.getWriter()) {
-            /* TODO output your page here. You may use following sample code. */
-
-            response.sendRedirect("dashboard");
-        }
     }
 
-    private void errorMessage(HttpServletRequest request, HttpServletResponse response) throws IOException {
+    private void errorMessage(HttpServletRequest request, HttpServletResponse response) throws IOException
+    {
         response.sendRedirect("error.html");
     }
 
@@ -76,7 +82,8 @@ public class workchat extends HttpServlet {
      */
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException {
+            throws ServletException, IOException
+    {
         processRequest(request, response);
     }
 
@@ -90,7 +97,8 @@ public class workchat extends HttpServlet {
      */
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException {
+            throws ServletException, IOException
+    {
         processRequest(request, response);
     }
 
@@ -100,7 +108,8 @@ public class workchat extends HttpServlet {
      * @return a String containing servlet description
      */
     @Override
-    public String getServletInfo() {
+    public String getServletInfo()
+    {
         return "Short description";
     }// </editor-fold>
 
