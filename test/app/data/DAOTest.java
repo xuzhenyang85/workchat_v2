@@ -124,5 +124,4 @@ public class DAOTest {
         DAO instance = new DAO();
         instance.checkAllGroups();
     }
-
 }
