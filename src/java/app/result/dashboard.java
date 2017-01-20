@@ -89,7 +89,7 @@ public class dashboard extends HttpServlet {
                 out.println(" <span class='icon-bar'></span>");
                 out.println(" <span class='icon-bar'></span>");
                 out.println(" </button>");
-                out.println("<a class='navbar-brand' href='index.html''><img alt='' src='img/logo.gif' width='50' height='50' style='margin-top: -15px;'' >" + email + "</a>"+ "</div> ");
+                out.println("<a class='navbar-brand' href='dashboard'><img alt='' src='img/logo.gif' width='50' height='50' style='margin-top: -15px;'' ></a> ");
                 out.println("   </div>");
  
                 out.println("  <div class='collapse navbar-collapse' id='bs-example-navbar-collapse-'>");

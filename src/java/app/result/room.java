@@ -47,7 +47,7 @@ public class room extends HttpServlet {
             } else {
                 String tmp = request.getParameter("groupId");
                 int id = Integer.parseInt(tmp);
-                
+
                 HttpSession session = request.getSession(true);
                 session.setAttribute("groupId", id);
                 out.println("<!DOCTYPE html> "
@@ -85,12 +85,12 @@ public class room extends HttpServlet {
                         + "                                <span class='icon-bar'></span> "
                         + "                                <span class='icon-bar'></span> "
                         + "                            </button> "
-                        + "                            <a class='navbar-brand' href='index.html''><img alt='' src='img/logo.gif' width='50' height='50' style='margin-top: -15px;'' >" + email + "</a>" + "</div> "
+                        + "                            <a class='navbar-brand' href='dashboard'><img alt='' src='img/logo.gif' width='50' height='50' style='margin-top: -15px;'' ></a>" + "</div> "
                         + " "
                         + "                        <!-- Collect the nav links, forms, and other content for toggling --> "
                         + "                        <div class='collapse navbar-collapse' id='bs-example-navbar-collapse-1'> "
                         + "                            <ul class='nav navbar-nav navbar-right'> "
-                        + "                                <li><a href='#'>Link</a></li> "
+                        + "  <li><a href='logout'>Log out</a></li>"
                         + "                                <li class='dropdown'> "
                         + "                                    <a href='#' class='dropdown-toggle' data-toggle='dropdown' role='button' aria-haspopup='true' aria-expanded='false'>Dropdown <span class='caret'></span></a> "
                         + "                                    <ul class='dropdown-menu'> "
