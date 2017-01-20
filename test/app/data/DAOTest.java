@@ -82,12 +82,12 @@ public class DAOTest {
     @Test
     public void testCreateGroup() {
         System.out.println("createGroup");
-        String name = "";
-        String password = "";
-        String email = "";
-        String userone = "";
-        String usertwo = "";
-        String userthree = "";
+        String name = "Test Group";
+        String password = "1234";
+        String email = "test@test.dk";
+        String userone = "User1";
+        String usertwo = "User2";
+        String userthree = "User3";
         DAO instance = new DAO();
         instance.createGroup(name, password, email, userone, usertwo, userthree);
     }

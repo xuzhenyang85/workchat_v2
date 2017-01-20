@@ -48,18 +48,25 @@ public class DAO implements DataAccessObject {
     @Override
     public boolean isAlreadyUser(String name,String email){
         try{
-            String query ="SELECT name, email From user Where name='"+name+"' AND email='"+email+"'";
+            String query ="SELECT name, email FROM user WHERE name='"+name+"' AND email='"+email+"';";
             Statement stmt = new Connector().getConnection().createStatement();
             ResultSet res = stmt.executeQuery(query);
             
-            if(res.equals(null)){
-               return false;
-            }
-            else{
-                return true;
+            while(res.next()){
+                String userName = res.getString("name");
+                System.out.println(userName);
+                String userEmail = res.getString("email");
+                System.out.println(userEmail);
+                if(userName!= null && userEmail!= null){
+                    return true;
+                }
+                else{
+                    return false;
+                }
             }
         }
         catch(Exception ex){
+            ex.printStackTrace();
             
         }
         return false;
