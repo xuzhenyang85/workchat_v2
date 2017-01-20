@@ -81,27 +81,29 @@ public class dashboard extends HttpServlet {
  
                 out.println(" <div class='container-fluid'><div class='row'>");
                 out.println(" <nav class='navbar navbar-default'>");
-                out.println("  <div class='container-fluid'>");
-                out.println("  <div class='navbar-header'>");
-                out.println("<button type='button' class='navbar-toggle collapsed' data-toggle='collapse' data-target='#bs-example-navbar-collapse-1' aria-expanded='false'>");
-                out.println("<span class='sr-only'>Toggle navigation</span>");
-                out.println(" <span class='icon-bar'></span>");
-                out.println(" <span class='icon-bar'></span>");
-                out.println(" <span class='icon-bar'></span>");
-                out.println(" </button>");
-                out.println("<a class='navbar-brand' href='index.html''><img alt='' src='img/logo.gif' width='50' height='50' style='margin-top: -15px;'' >" + email + "</a>"+ "</div> ");
-                out.println("   </div>");
+                out.println("  <div class='container-fluid'>"
+                + "                        <div class='navbar-header'> "
+                        + "                            <button type='button' class='navbar-toggle collapsed' data-toggle='collapse' data-target='#bs-example-navbar-collapse-1' aria-expanded='false'>"
+                        + "                                <span class='sr-only'>Toggle navigation</span> "
+                        + "                                <span class='icon-bar'></span> "
+                        + "                                <span class='icon-bar'></span> "
+                        + "                                <span class='icon-bar'></span> "
+                        + "                            </button> "
+                        + "                            <a class='navbar-brand' href='index.html''><img alt='' src='img/logo.gif' width='50' height='50' style='margin-top: -15px;'' ></a></div> "
+                        +"<a href='#' >"+email+"</a>"
+                        + " "
+                        + "                        <!-- Collect the nav links, forms, and other content for toggling --> ");
  
                 out.println("  <div class='collapse navbar-collapse' id='bs-example-navbar-collapse-'>");
                 out.println("<ul class='nav navbar-nav navbar-right'>");
-                out.println("  <li><a href='logout'>Log out</a></li>");
+                out.println("  <li><a href='javascript: history.go(-1)'>Back</a></li>");
  
                 out.println("  <li class='dropdown'>");
-                out.println("  <a href='#' class='dropdown-toggle' data-toggle='dropdown' role='button' aria-haspopup='true' aria-expanded='false'>Dropdown <span class='caret'></span></a>");
+                out.println("  <a href='#' class='dropdown-toggle' data-toggle='dropdown' role='button' aria-haspopup='true' aria-expanded='false'>Setting<span class='caret'></span></a>");
                 out.println("  <ul class='dropdown-menu'>");
-                out.println("    <li><a href='#'>Action</a></li>");
-                out.println("    <li><a href='#'>Another action</a></li>");
-                out.println("   <li><a href='#'>Something else here</a></li>");
+                out.println("    <li><a href='create.html'>Sign in</a></li>");
+                out.println("    <li><a href='info.html'>About us</a></li>");
+                out.println("   <li><a href='logout'>Log out</a></li>");
                 out.println("    <li role='separator' class='divider'></li>");
                 out.println(" <li><a href='#'>Separated link</a></li>");
                 out.println("   </ul>");
