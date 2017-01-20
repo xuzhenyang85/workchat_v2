@@ -42,11 +42,14 @@ public class ajax extends HttpServlet {
         PrintWriter out = response.getWriter();
         String text = "";
         for (int i = 0; i < logs.size(); i++) {
-           out.println("       "
+            out.println("       "
                     + "                        <blockquote style='text-align:left;'> "
                     + "                            <footer>" + logs.get(i).getFk_userId() + "  <cite title='Source Title'>" + logs.get(i).getTimestamp() + "</cite></footer> "
                     + "                            <p>" + logs.get(i).getMsg() + "</p> "
                     + "                        </blockquote>");
+        }
+        if (logs.isEmpty()) {
+            out.println("<p>No chat history</p>");
         }
         response.getWriter().write(text);       // Write response body.
     }

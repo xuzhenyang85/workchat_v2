@@ -138,18 +138,6 @@ public class DAO implements DataAccessObject {
 
     }
 
-    public void sendInvitation() {
-
-    }
-
-    public void seeInvitation() {
-
-    }
-
-    public void acceptInvitation() {
-
-    }
-
     public void checkAllGroups() {
         try {
             String query = "SELECT * FROM grouprooms";

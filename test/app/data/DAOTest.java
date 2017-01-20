@@ -116,36 +116,6 @@ public class DAOTest {
     }
 
     /**
-     * Test of sendInvitation method, of class DAO.
-     */
-    @Test
-    public void testSendInvitation() {
-        System.out.println("sendInvitation");
-        DAO instance = new DAO();
-        instance.sendInvitation();
-    }
-
-    /**
-     * Test of seeInvitation method, of class DAO.
-     */
-    @Test
-    public void testSeeInvitation() {
-        System.out.println("seeInvitation");
-        DAO instance = new DAO();
-        instance.seeInvitation();
-    }
-
-    /**
-     * Test of acceptInvitation method, of class DAO.
-     */
-    @Test
-    public void testAcceptInvitation() {
-        System.out.println("acceptInvitation");
-        DAO instance = new DAO();
-        instance.acceptInvitation();
-    }
-
-    /**
      * Test of checkAllGroups method, of class DAO.
      */
     @Test

@@ -58,7 +58,7 @@ public class room extends HttpServlet {
                         + "--> "
                         + "<html> "
                         + "    <head> "
-                        + "        <title>TODO supply a title</title> "
+                        + "        <title>Workchat</title> "
                         + "        <meta charset='UTF-8'> "
                         + "        <meta name='viewport' content='width=device-width, initial-scale=1.0'> "
                         + "        <link rel='stylesheet' type='text/css' href='css/reset.css'> "
@@ -110,9 +110,6 @@ public class room extends HttpServlet {
                         + "            <div class='row' style='margin-top:40px;'> "
                         
                         + "                <div class='col-md-4'> "
-                        + "                    <div class='col-md-12' style='margin-bottom:20px;'><img src='img/m_icon.png' width='80' alt='...' class='img-thumbnail col-md-4 col-md-offset-8'> "
-                        +"                     <p></p>"
-                        + "                    </div> "
                         + "                    <div class='col-md-12' style='margin-bottom:20px;'><img src='img/w_icon.png' width='80' alt='...' class='img-thumbnail col-md-4 col-md-offset-8'> "
                         + "                    </div> "
                         + "                    <div class='col-md-12'><img src='img/m_icon.png' width='80' alt='...' class='img-thumbnail col-md-4 col-md-offset-8'> "
@@ -130,21 +127,22 @@ public class room extends HttpServlet {
                             + "                <p style='font-family:verdana; font-size: 12px;' >" + logs.get(i).getMsg() + "</p> "
                             + "                </blockquote>");
                 }
+                                            if(logs.isEmpty()){
+                                                out.println("<p>No chat history</p>");
+                                            }
                 out.println("                  </div> <form action='msg'> "
                         + "                    <input type='hidden' value='" + id + "' name='groupIdField' />"
                         + "                    <textarea name='msg' class='form-control' rows='3'></textarea>"
                         + " "
                         + " "
                         + "                    <button type='submit' class='btn btn-success col-md-4 col-md-offset-8' style='margin-top:20px;margin-bottom:20px;'>Send</button></form> "
-                        + "                    </div></div>"
+                        + "                    </div>"
                         + "                    <div class='col-md-4'> "
-                        + "                    <div class='col-md-12' style='margin-bottom:20px;'><img src='img/m_icon.png' width='80' alt='...' class='img-thumbnail col-md-4'> "
-                        + "                    </div> "
                         + "                    <div class='col-md-12' style='margin-bottom:20px;'><img src='img/m_icon.png' width='80' alt='...' class='img-thumbnail col-md-4'> "
                         + "                    </div> "
                         + "                    <div class='col-md-12'><img src='img/w_icon.png' width='80' alt='...' class='img-thumbnail col-md-4'> "
                         + "                    </div> "
-                        + "                </div> "
+                        + "                </div> </div>"
                         + "            </div> "
                         + "        </div> "
                         + "    </body> "
