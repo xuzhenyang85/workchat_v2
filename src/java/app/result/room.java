@@ -90,7 +90,6 @@ public class room extends HttpServlet {
                         + "                        <!-- Collect the nav links, forms, and other content for toggling --> "
                         + "                        <div class='collapse navbar-collapse' id='bs-example-navbar-collapse-1'> "
                         + "                            <ul class='nav navbar-nav navbar-right'> "
-                        
                         + "                                <li><a href='javascript: history.go(-1)'>Back</a></li> "
                         + "                                <li class='dropdown'> "
                         + "                                    <a href='#' class='dropdown-toggle' data-toggle='dropdown' role='button' aria-haspopup='true' aria-expanded='false'>Setting<span class='caret'></span></a> "
@@ -108,23 +107,18 @@ public class room extends HttpServlet {
                         + "                </nav> "
                         + "            </div> "
                         + "            <div class='row' style='margin-top:40px;'> "
-                        
-                        + "                <div class='col-md-4'> "
-                        + "                    <div class='col-md-12' style='margin-bottom:20px;'><img src='img/m_icon.png' width='80' alt='...' class='img-thumbnail col-md-4 col-md-offset-8'> "
-                        +"                     <p></p>"
-                        + "                    </div> "
-                        + "                    <div class='col-md-12' style='margin-bottom:20px;'><img src='img/w_icon.png' width='80' alt='...' class='img-thumbnail col-md-4 col-md-offset-8'> "
-                        + "                    </div> "
-                        + "                    <div class='col-md-12'><img src='img/m_icon.png' width='80' alt='...' class='img-thumbnail col-md-4 col-md-offset-8'> "
-                        + "                    </div> "
-                        + "                </div> "
+                        + "                <div class='col-md-4'> ");
+
+                DAO dao = new DAO();
+                dao.userName(id, request, response);
+                out.println("                </div> "
                         + "                <div class='col-md-4' style='border: 1px solid #e1e1e1; border-radius:2px;padding-top:20;'> "
                         + "                    <div class='col-md-12' id='messages' style='max-height:500px;overflow:auto;margin:30px 0px;'> "
                 );
-                                            DAO dao = new DAO();
-                                            ArrayList<MessageLog> logs;
-                                            logs = dao.getMessages(id);for (int i = 0; i < logs.size(); i++) {
-                out.println("       "
+                ArrayList<MessageLog> logs;
+                logs = dao.getMessages(id);
+                for (int i = 0; i < logs.size(); i++) {
+                    out.println("       "
                             + "                <blockquote style='text-align:left;'> "
                             + "                <footer>" + logs.get(i).getFk_userId() + "  <cite title='Source Title'>" + logs.get(i).getTimestamp() + "</cite></footer> "
                             + "                <p style='font-family:verdana; font-size: 12px;' >" + logs.get(i).getMsg() + "</p> "
@@ -136,14 +130,7 @@ public class room extends HttpServlet {
                         + " "
                         + " "
                         + "                    <button type='submit' class='btn btn-success col-md-4 col-md-offset-8' style='margin-top:20px;margin-bottom:20px;'>Send</button></form> "
-                        + "                    </div></div>"
-                        + "                    <div class='col-md-4'> "
-                        + "                    <div class='col-md-12' style='margin-bottom:20px;'><img src='img/m_icon.png' width='80' alt='...' class='img-thumbnail col-md-4'> "
-                        + "                    </div> "
-                        + "                    <div class='col-md-12' style='margin-bottom:20px;'><img src='img/m_icon.png' width='80' alt='...' class='img-thumbnail col-md-4'> "
-                        + "                    </div> "
-                        + "                    <div class='col-md-12'><img src='img/w_icon.png' width='80' alt='...' class='img-thumbnail col-md-4'> "
-                        + "                    </div> "
+                        + "                    </div>"
                         + "                </div> "
                         + "            </div> "
                         + "        </div> "
