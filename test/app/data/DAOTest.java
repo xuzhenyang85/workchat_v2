@@ -158,7 +158,7 @@ public class DAOTest {
         System.out.println("getMessages");
         int groupId = 0;
         DAO instance = new DAO();
-        ArrayList<MessageLog> expResult = instance.getMessages(groupId);
+        ArrayList<MessageLog> expResult = instance.getMessages(1);
         ArrayList<MessageLog> result = instance.getMessages(groupId);
         assertEquals(expResult, result);
     }
